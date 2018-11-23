@@ -454,7 +454,38 @@ class DatasetLu2018():
   # The index of lon and lat of land on a global reduced Gaussian grid
   land_ind = None
   
+  # Set coordination
+  coord_is_set = False
+  
+  
+  @staticmethod
+  def set_coordination(lon_land, lat_land):
+    # number of grids on the land
+    DatasetLu2018.ngrid = lon_land.size
+  
+    # Lon_land and lat_land keep the same for each year
+    DatasetLu2018.lon_land = lon_land
+    DatasetLu2018.lat_land = lat_land
+  
+    # Global reduced Gaussian grid, west --> east, south --> north
+    DatasetLu2018.lon_rg, DatasetLu2018.lat_rg = generate_global_reduced_gaussian_grid(nlon_N80, lat_N80)
+      
+    # Global regular 1x1 grid, west --> east, south --> north
+    DatasetLu2018.lon_11 = np.linspace(-179.5, 179.5, 360)
+    DatasetLu2018.lat_11 = np.linspace(-89.5, 89.5, 180)
+      
+    # Global Gaussian grid with 360 regular lon, west --> east, south --> north
+    DatasetLu2018.lon_gg = np.copy(DatasetLu2018.lon_11)
+    DatasetLu2018.lat_gg = np.copy(DatasetLu2018.lat_rg)
+    
+    # Land ind in global grid for RG grid
+    DatasetLu2018.land_ind = get_land_ind_in_glob_reduced_gaussian_grid( \
+      lon_land, lat_land, DatasetLu2018.lon_rg, DatasetLu2018.lat_rg)
+    
+    # Coordination is set
+    DatasetLu2018.coord_is_set = True
 
+    
   def __init__(self, fname):
     """
     Raw data structure:
@@ -469,43 +500,12 @@ class DatasetLu2018():
     raw = np.loadtxt(fname)
     nrow, ncol = raw.shape
     ngrid = int(nrow/nyear)
-  
-    # number of grids on the land
-    if DatasetLu2018.ngrid is None:
-      DatasetLu2018.ngrid = ngrid
-  
-    # longitude and latitude
+    
+    # Set coordination
     lon_raw = np.reshape(raw[:, 0], (nyear, ngrid))
     lat_raw = np.reshape(raw[:, 1], (nyear, ngrid))
-  
-    # Lon_land and lat_land keep the same for each year
-    if DatasetLu2018.lon_land is None:
-      DatasetLu2018.lon_land = lon_raw[0,:]
-    if DatasetLu2018.lat_land is None:
-      DatasetLu2018.lat_land = lat_raw[0,:]
-  
-    # Global reduced Gaussian grid, west --> east, south --> north
-    if (DatasetLu2018.lon_rg is None) or (DatasetLu2018.lat_rg is None):
-      DatasetLu2018.lon_rg, DatasetLu2018.lat_rg = \
-        generate_global_reduced_gaussian_grid(nlon_N80, lat_N80)
-      
-    # Global regular 1x1 grid, west --> east, south --> north
-    if DatasetLu2018.lon_11 is None:
-      DatasetLu2018.lon_11 = np.linspace(-179.5, 179.5, 360)
-    if DatasetLu2018.lat_11 is None:
-      DatasetLu2018.lat_11 = np.linspace(-89.5, 89.5, 180)
-      
-    # Global Gaussian grid with 360 regular lon, west --> east, south --> north
-    if DatasetLu2018.lon_gg is None:
-      DatasetLu2018.lon_gg = np.copy(DatasetLu2018.lon_11)
-    if DatasetLu2018.lat_gg is None:
-      DatasetLu2018.lat_gg = np.copy(DatasetLu2018.lat_rg)
-    
-    # Land ind in global grid for RG grid
-    if DatasetLu2018.land_ind is None:
-      DatasetLu2018.land_ind = \
-        get_land_ind_in_glob_reduced_gaussian_grid( \
-          DatasetLu2018.lon_land, DatasetLu2018.lat_land, DatasetLu2018.lon_rg, DatasetLu2018.lat_rg)
+    if not DatasetLu2018.coord_is_set:
+      DatasetLu2018.set_coordination(lon_raw[0,:], lat_raw[0,:])
   
     #
     # monthly mean LAI of low and high veg
@@ -664,6 +664,131 @@ class DatasetLu2018():
         vt_dom[i] = dominant_l_all[0]
       
     return vt_dom
+  
+  
+  def get_data_on_regular_grid(self):
+    # Use short names
+    lon_gg, lat_gg = DatasetLu2018.lon_gg, DatasetLu2018.lat_gg
+    nlon_gg, nlat_gg = lon_gg.size, lat_gg.size
+    
+    lon_11, lat_11 = DatasetLu2018.lon_11, DatasetLu2018.lat_11
+    nlon_11, nlat_11 = lon_11.size, lat_11.size
+    
+    # Initialize the data array
+    self.tv_dom_gg      = np.zeros( (nvt , nlat_gg, nlon_gg) )
+    self.tv_dom_11      = np.zeros( (nvt , nlat_11, nlon_11) )
+    self.cvh_dom_avg_gg = np.zeros( (nmon, nlat_gg, nlon_gg) )
+    self.cvh_dom_avg_11 = np.zeros( (nmon, nlat_11, nlon_11) )
+    self.cvl_dom_avg_gg = np.zeros( (nmon, nlat_gg, nlon_gg) )
+    self.cvl_dom_avg_11 = np.zeros( (nmon, nlat_11, nlon_11) )    
+
+    # Interpolate tv for each veg type with nearest method
+    print('Interpolating tv_dom ...')
+    for iv in range(nvt):
+      print('{0:d}'.format(int(iv+1)))
+      self.tv_dom_gg[int(iv), :, :], self.tv_dom_11[int(iv), :, :] = \
+        DatasetLu2018.interpolate_data_from_lrg_to_11(self.tv_dom[int(iv), :], kind='nearest')
+    
+    # Interpolate cvl_dom_avg and cvh_dom_avg for each month with linear method
+    for im in range(nmon):
+      print('{0:d}'.format(int(im+1)))
+      self.cvl_dom_avg_gg[int(im), :, :], self.cvl_dom_avg_11[int(im), :, :] = \
+        DatasetLu2018.interpolate_data_from_lrg_to_11(self.cvl_dom_avg[int(im), :], kind='nearest')
+      self.cvh_dom_avg_gg[int(im), :, :], self.cvh_dom_avg_11[int(im), :, :] = \
+        DatasetLu2018.interpolate_data_from_lrg_to_11(self.cvh_dom_avg[int(im), :], kind='nearest')
+  
+  
+  @staticmethod
+  def interpolate_data_from_lrg_to_11(data_land, kind='linear'):
+    """
+    " Interpolate the scattered data to regular lon-lat coordinates
+    " 
+    " Now the bi-linear interpolation is used to get the coverage for the grid cells:
+    " 
+    " Check if the sizes of land lon and lat are correct
+    " Generate the global grid ll: lon_glob, lat_glob
+    " Generate regular global grid for reduced Gaussian latitudes and 1 degree lat
+    " Obtain the indices of lon and lat for each land grid in the global grid: land_ind
+    " Interpolation:
+    "   (1) Loop for each latitude
+    "   (2) Put the land data to global grid for reduced Gaussian grid
+    "   (3) Interpolate every latitude from global reduced Gaussian to global regular grid
+    "   (4) Interpolate for every longitude in the regular grid
+    "
+    " lon_land: lon for land grid
+    " lat_land: lat for land grid
+    " data_land: data at land grid
+    " lon_glob: lon of global reduced Gaussian (RG) grid for each lat
+    " lat_glob: lat of global RG grid
+    " nlon_rgn: number of lon at each RG grid lat at NH
+    " lon_11: lon of regular grid
+    " lat_11: lat of regular grid
+    " kind: interpolation method used in scipy.interpolate
+    """
+    
+    # Use short names
+    lon_land, lat_land = DatasetLu2018.lon_land, DatasetLu2018.lat_land
+    nlon_land, nlat_land = lon_land.size, lat_land.size
+    
+    lon_rg, lat_rg = DatasetLu2018.lon_rg, DatasetLu2018.lat_rg
+    
+    lon_11, lat_11 = DatasetLu2018.lon_11, DatasetLu2018.lat_11
+    nlon_11, nlat_11 = lon_11.size, lat_11.size
+    
+    lon_gg, lat_gg = DatasetLu2018.lon_gg, DatasetLu2018.lat_gg
+    nlon_gg, nlat_gg = lon_gg.size, lat_gg.size
+    
+    land_ind = DatasetLu2018.land_ind
+    
+    ngrid = DatasetLu2018.ngrid
+    
+    #
+    # Interpolation from data_land to data_regrg, then to data_reg
+    #
+    
+    # Initiation
+    data_gg = np.zeros((nlat_gg, nlon_gg))
+    data_11 = np.zeros((nlat_11, nlon_11))
+    
+    data_rg = []  # data at global RG grid
+    for j in range(lat_rg.size):
+      data_rg.append( np.zeros((lon_rg[j].size,)) )
+  
+    # If data_land is all zero, return
+    if np.amax(data_land) <= 0:
+      print('No data for this vegetation type.')
+      return data_gg, data_11
+    
+    # Put land data to data_glob
+    for ig in range(ngrid):
+      ilon, ilat = land_ind[ig, :]
+      data_rg[ilat][ilon] = data_land[ig]
+    
+    # Interpolate for each lat at RG grid
+    for ilatgg in range(nlat_gg):
+      ##### Old interpolation method
+      # data_regrg[ilatrg, :] = np.interp(lon_regrg, lon_glob[ilatrg][:], data_glob[ilatrg][:], period=360)
+  
+      ##### New interpolation method
+      # Construct data set representing the period data
+      x = np.concatenate([ [lon_rg[ilatgg][-1]-360.0], lon_rg[ilatgg][:], [lon_rg[ilatgg][0]+360.0] ])
+      y = np.concatenate([ [data_rg[ilatgg][-1]], data_rg[ilatgg][:], [data_rg[ilatgg][0]] ])
+  
+      # Interpolate with method kind
+      f = interpolate.interp1d(x, y, kind=kind)
+      data_gg[ilatgg, :] = f(lon_gg)
+  
+      # Interpolate for each lon_reg from RG lat to regular lat: gg --> 11
+      # 0 for external points, and remember to keep xp increment
+      for ilon in range(nlon_11):
+        # Old interpolation method, can not select interpolation method
+        # data_reg[:, ilon] = np.interp(lat_reg, lat_regrg[::-1], data_regrg[::-1, ilon], left=0, right=0)
+  
+        # New interpolation method, make sure x is in the increment order
+        f = interpolate.interp1d(lat_gg[::-1], data_gg[::-1, ilon], kind=kind, fill_value=0.0, bounds_error=False)
+        data_11[:, ilon] = f(lat_11)
+    
+    return data_gg, data_11
 
 
 def show_statistics(data):
