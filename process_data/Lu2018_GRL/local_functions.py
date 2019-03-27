@@ -6,11 +6,14 @@ import pandas as pd
 import numpy as np
 import numpy.ma as ma
 from scipy import interpolate
+from pyhdf.SD import *
 
 from mpl_toolkits.basemap import Basemap
 import matplotlib as mpl
 # mpl.use('Agg')
 import matplotlib.pyplot as plt
+
+import putian_functions as pf
 
 
 #
@@ -693,13 +696,13 @@ class DatasetLu2018():
     for im in range(nmon):
       print('{0:d}'.format(int(im+1)))
       self.cvl_dom_avg_gg[int(im), :, :], self.cvl_dom_avg_11[int(im), :, :] = \
-        DatasetLu2018.interpolate_data_from_lrg_to_11(self.cvl_dom_avg[int(im), :], kind='nearest')
+        DatasetLu2018.interpolate_data_from_lrg_to_11(self.cvl_dom_avg[int(im), :], kind='linear')
       self.cvh_dom_avg_gg[int(im), :, :], self.cvh_dom_avg_11[int(im), :, :] = \
-        DatasetLu2018.interpolate_data_from_lrg_to_11(self.cvh_dom_avg[int(im), :], kind='nearest')
+        DatasetLu2018.interpolate_data_from_lrg_to_11(self.cvh_dom_avg[int(im), :], kind='linear')
   
   
-  @staticmethod
-  def interpolate_data_from_lrg_to_11(data_land, kind='linear'):
+  @classmethod
+  def interpolate_data_from_lrg_to_11(cls, data_land, kind='linear'):
     """
     " Interpolate the scattered data to regular lon-lat coordinates
     " 
@@ -727,20 +730,20 @@ class DatasetLu2018():
     """
     
     # Use short names
-    lon_land, lat_land = DatasetLu2018.lon_land, DatasetLu2018.lat_land
+    lon_land, lat_land = cls.lon_land, cls.lat_land
     nlon_land, nlat_land = lon_land.size, lat_land.size
     
-    lon_rg, lat_rg = DatasetLu2018.lon_rg, DatasetLu2018.lat_rg
+    lon_rg, lat_rg = cls.lon_rg, cls.lat_rg
     
-    lon_11, lat_11 = DatasetLu2018.lon_11, DatasetLu2018.lat_11
+    lon_11, lat_11 = cls.lon_11, cls.lat_11
     nlon_11, nlat_11 = lon_11.size, lat_11.size
     
-    lon_gg, lat_gg = DatasetLu2018.lon_gg, DatasetLu2018.lat_gg
+    lon_gg, lat_gg = cls.lon_gg, cls.lat_gg
     nlon_gg, nlat_gg = lon_gg.size, lat_gg.size
     
-    land_ind = DatasetLu2018.land_ind
+    land_ind = cls.land_ind
     
-    ngrid = DatasetLu2018.ngrid
+    ngrid = cls.ngrid
     
     #
     # Interpolation from data_land to data_regrg, then to data_reg
@@ -785,10 +788,39 @@ class DatasetLu2018():
         # data_reg[:, ilon] = np.interp(lat_reg, lat_regrg[::-1], data_regrg[::-1, ilon], left=0, right=0)
   
         # New interpolation method, make sure x is in the increment order
-        f = interpolate.interp1d(lat_gg[::-1], data_gg[::-1, ilon], kind=kind, fill_value=0.0, bounds_error=False)
+        f = interpolate.interp1d(lat_gg, data_gg[:, ilon], kind=kind, fill_value=0.0, bounds_error=False)
         data_11[:, ilon] = f(lat_11)
     
     return data_gg, data_11
+  
+
+  def save_data(self, fname):
+    # Save the data
+    np.savez(fname, \
+             lon_land = DatasetLu2018.lon_land, \
+             lat_land = DatasetLu2018.lat_land, \
+             lon_11 = DatasetLu2018.lon_11, \
+             lat_11 = DatasetLu2018.lat_11, \
+             vtl_set = self.vtl_set, \
+             vth_set = self.vth_set, \
+             vt_set = self.vt_set, \
+             lail = self.lail, \
+             laih = self.laih, \
+             tv_dom = self.tv_dom, \
+             cvh_dom_avg = self.cvh_dom_avg, \
+             cvl_dom_avg = self.cvl_dom_avg, \
+             tv_dom_11 = self.tv_dom_11, \
+             cvh_dom_avg_11 = self.cvh_dom_avg_11, \
+             cvl_dom_avg_11 = self.cvl_dom_avg_11 \
+            )
+
+  
+class TestStaticVariable():
+  sta1 = 2.0
+  
+  def __init__(self):
+    # self.sta1 = 3.0
+    print(self.sta1, TestStaticVariable.sta1)
 
 
 def show_statistics(data):
@@ -1238,6 +1270,152 @@ def interp_land_reduced_gaussian_regular_grid(lon_land, lat_land, land_ind, data
   return data_regrg, data_reg
 
 
+def create_tm5_input_veg_file(fname, lon, lat, tv, cvh, cvl, fid_raw, verb=False, output='output_veg.txt'):
+# def create_tm5_input_veg_file(fname, lon, lat, tv, cvh, cvl, fid_raw):
+  """
+  " fname: name of tm5 input veg hdf4 file
+  " input_data: including tv, cvh, cvl, lon, lat
+  " fid_raw: 
+  """
+
+  # Delete file if exists, so create a totally new file
+  if os.path.exists(fname):
+    os.remove(fname)
+  
+  # Read input data modified from Lu2018
+  # tv  = input_data['tv_dom_11']
+  # cvh = input_data['cvh_dom_avg_11']
+  # cvl = input_data['cvl_dom_avg_11']
+  # lon = input_data['lon_11']
+  # lat = input_data['lat_11']
+  nlon, nlat = lon.size, lat.size
+  
+  # Open a file to write
+  fid = SD(fname, SDC.WRITE|SDC.CREATE)
+  
+  # Set global attributes according to fid_raw
+  fid.ae       = fid_raw.ae
+  fid.area_m2  = fid_raw.area_m2
+  fid.fname    = fname
+  fid.format   = fid_raw.format
+  fid.grav     = fid_raw.grav
+  fid.gridtype = fid_raw.gridtype
+  fid.latmax   = fid_raw.latmax
+  fid.latmin   = fid_raw.latmin
+  fid.lonmax   = fid_raw.lonmax
+  fid.lonmin   = fid_raw.lonmin
+  
+  # Create datasets for lon and lat
+  d = fid.create('LAT', SDC.FLOAT64, nlat)
+  dim0 = d.dim(0)
+  dim0.setname('LAT')
+  d[:] = lat
+  d.endaccess()
+  
+  d = fid.create('LON', SDC.FLOAT64, nlon)
+  dim0 = d.dim(0)
+  dim0.setname('LON')
+  d[:] = lon
+  d.endaccess()
+  
+  # Create datasets for tv
+  for i in range(nvt):
+    tvstr = tm5_tvname[i]
+    d = fid.create(tvstr, SDC.FLOAT64, (nlat, nlon))
+    dim0 = d.dim(0)
+    dim1 = d.dim(1)
+    dim0.setname('LAT')
+    dim1.setname('LON')
+  
+    d[:] = tv[i, :, :]
+  
+    # Close dataset
+    d.endaccess()
+  
+  # Create datasets for cvh and cvl
+  d = fid.create('cvh', SDC.FLOAT64, (nlat, nlon))
+  dim0 = d.dim(0)
+  dim1 = d.dim(1)
+  dim0.setname('LAT')
+  dim1.setname('LON')
+  d[:] = cvh
+  d.endaccess()
+  
+  d = fid.create('cvl', SDC.FLOAT64, (nlat, nlon))
+  dim0 = d.dim(0)
+  dim1 = d.dim(1)
+  dim0.setname('LAT')
+  dim1.setname('LON')
+  d[:] = cvl
+  d.endaccess()
+  
+  # Add variable attributes the same as in tm5 veg 2009 raw file
+  ds_names = fid.datasets()
+  ds_raw = fid_raw.select('tv01')
+  for dn in ds_names:
+    ds = fid.select(dn)
+    if not ds.iscoordvar():
+      for attr_name, attr_value in ds_raw.attributes().items():
+        setattr(ds, attr_name, attr_value)
+  
+  # Close file
+  fid.end()
+  # fid_raw.end()
+  
+  # Check file info
+  fid, fattr, fdset = pf.h4dump(fname, verb, output)
+
+  return fid, fattr, fdset
+
+
+def modify_potsrc(region):
+  """
+  " region: (W, E, S, N)
+  """
+  pass
+
+
+def modify_soilph(lon, lat, soilph, cvh, cvl, region):
+  """
+  " Modify soilph3 and soilph4 according to cvh and cvl in the region
+  "
+  " In emission_dust.F90: the area with soilph(3) + soilph(4) > 0 is considered as desert
+  " Lu2018: bare soil is set where vegetation cover < 20%.
+  " So here we set both the soilph(3) and soilph(4) to 0 (not desert) when cvh + cvl >= 0.2 in the northern African region (e.g., 20W-40E, 10N-30N).
+  " Notice the index of 3 and 4 are 2 and 3.
+  "
+  " lon, lat: coordinates
+  " soilph: [nsoilph, nlat, nlon], nsoilph = 5
+  " cvh, cvl: [nlat, nlon]
+  " region: (W, E, S, N)
+  "
+  " Here cvh, cvl and soilph should be in the same global grid, e.g., 1x1
+  """
+
+  # Region mask
+  regm_lon = (lon>=region[0]) & (lon<=region[1])
+  regm_lat = (lat>=region[2]) & (lat<=region[3])
+
+  # Get cvh and cvl in the region
+  cvh_reg = cvh[np.ix_(regm_lat, regm_lon)]
+  cvl_reg = cvl[np.ix_(regm_lat, regm_lon)]
+  
+  # Extract the region, set regional soilph wrt cvh and cvl, then set back the values
+  sp3_reg = np.squeeze( soilph[np.ix_([2], regm_lat, regm_lon)] )
+  sp3_reg[cvh_reg+cvl_reg >= 0.2] = 0.0
+  soilph[np.ix_([2], regm_lat, regm_lon)] = sp3_reg
+  
+  sp4_reg = np.squeeze( soilph[np.ix_([3], regm_lat, regm_lon)] )
+  sp4_reg[cvh_reg+cvl_reg >= 0.2] = 0.0
+  soilph[np.ix_([3], regm_lat, regm_lon)] = sp4_reg
+
+  return soilph
+
+
+def modify_onlinedust_4(fname_raw, region):
+  pass
+
+
 #==============================================================================#
 #
 # Plot functions
@@ -1292,8 +1470,8 @@ def plot_map(ax, pm, reg, parallels=np.arange(-90, 91, 15.0), meridians=np.arang
 
   # Draw parallels and meridians.
   # labels = [left,right,top,bottom]
-  m.drawparallels(parallels, labels=[True, False, False, False])  # draw latitude lines every 30 degrees
-  m.drawmeridians(meridians, labels=[False, False, False, True])  # draw longitude lines every 60 degrees
+  m.drawparallels(parallels, labels=[True, False, False, False], fontsize=18)  # draw latitude lines every 30 degrees
+  m.drawmeridians(meridians, labels=[False, False, False, True], fontsize=18)  # draw longitude lines every 60 degrees
   # m.drawmapboundary(fill_color='aqua')  # draw the edge of map projection region
 
   # land-sea mask
