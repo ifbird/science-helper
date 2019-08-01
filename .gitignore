@@ -1,5 +1,6 @@
 *.ipynb_checkpoints*
 *__pycache__*
 *.ipynb
+*.pyc
 
 process_data/Lu2018_GRL/figures/*
