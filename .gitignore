@@ -2,5 +2,6 @@
 *__pycache__*
 *.ipynb
 *.pyc
+*.nc
 
 process_data/Lu2018_GRL/figures/*
