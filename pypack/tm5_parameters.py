@@ -1,43 +1,5 @@
 import numpy as np
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-# Set parameters
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-gacc = 9.81  # [m s-2], gravity acceleration
-p0 = 1.0e5  # [Pa], reference pressure
-pstd = 1.01325e5  # [Pa], standard atmospheric pressure
-thetav0 = 273.15 + 15.0  # [K], reference virtual potential temperature
-
-# Molar masses
-M_air = 28.97e-3  # [kg mol-1], dry air
-M_H2O = 18.01488e-3  # [kg mol-1], water
-
-# Gas constants
-Rgas = 8.3144598  # [J K-1 mol-1] = [kg m2 s-2 K-1 mol-1], universal gas constant
-R_air = Rgas/M_air  # [J kg-1 K-1], specific gas constant
-R_H2O = Rgas/M_H2O  # [J kg-1 K-1], specific gas constant
-
-cpd = 1004.0  # [J kg-1 K-1], specific heat capacity at constant pressure for dry air
-cpv = 1885.0  # [J kg-1 K-1], specific heat capacity at constant pressure for water vapor
-cpl = 4186.0  # [J kg-1 K-1], specific heat capacity at constant pressure for liquid water
-cvd = 717.0   # [J kg-1 K-1], specific heat capacity at constant volume for dry air
-cvv = 1424.0  # [J kg-1 K-1], specific heat capacity at constant volume for water vapor
-
-vonK = 0.4  # [-], von Karman constant
-Lv = 2.501e6  # [J kg-1], latent heat of evaporation
-
-# Aliases
-Rd = R_air
-Rv = R_H2O
-
-# Month days for normal year
-monthday      = [31, 28, 31, 30, 31,  30, 31, 31, 30, 31,  30, 31]
-monthday_leap = [31, 29, 31, 30, 31,  30, 31, 31, 30, 31,  30, 31]
-
-# Number of months per year
-nmon = 12
-
-
 #===== tm5 =====#
 tm5 = {}
 

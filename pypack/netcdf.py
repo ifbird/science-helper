@@ -1,4 +1,5 @@
-from .fileio import *
+# from .fileio import *
+from fileio import *
 
 from netCDF4 import Dataset
 
@@ -87,6 +88,84 @@ def ncdump(ncfile, verb=True, log_file=None):
   set_sysstdout(verb=True)
 
   return nc_fid, nc_attrs, nc_dims, nc_vars
+
+
+def copy_global_attributes(nc_fid1, nc_fid2):
+  """
+  " Copy the global attributes in nc_fid1 to nc_fid2
+  """
+  
+  for attr_name in nc_fid1.ncattrs():
+    setattr(nc_fid2, attr_name, getattr(nc_fid1, attr_name)) 
+
+  return nc_fid2
+
+
+def copy_dimension(nc_fid1, nc_fid2, dim_name):
+  """
+  " Create a new dimension the same as that in nc_fid1
+  """
+
+  # If the dim is already in nc_fid2, print a message and do nothing
+  if dim_name in nc_fid2.dimensions:
+    print('{0} is already in the targeted netcdf file.'.format(dim_name))
+    return nc_fid2
+
+  # Get the dimension from nc_fid1
+  dim1 = nc_fid1.dimensions[dim_name]
+  if dim1.isunlimited():
+    dim2 = nc_fid2.createDimension(dim_name, None)
+  else:
+    ndim = len(dim1)  # dimension length
+    dim2 = nc_fid2.createDimension(dim_name, ndim)
+
+  return nc_fid2
+
+
+def copy_variable(nc_fid1, nc_fid2, var_name):
+  """
+  " Create a new variable, copy the attributes and the values
+  """
+
+  # If the var is already in nc_fid2, print a message and do nothing
+  if var_name in nc_fid2.variables:
+    print('{0} is already in the targeted netcdf file.'.format(var_name))
+    return nc_fid2 
+
+  # Get the variable and its dims from nc_fid1
+  var1 = nc_fid1.variables[var_name]
+  dims = var1.dimensions
+  dtype = var1.dtype
+
+  # Create a new variable in nc_fid2
+  var2 = nc_fid2.createVariable(var_name, dtype, dims)
+
+  # Copy the attributes
+  copy_variable_attributes(nc_fid1, var_name, nc_fid2, var_name)
+
+  # Copy the data
+  var2[:] = var1[:]
+
+  return nc_fid2
+
+
+def copy_variable_attributes(nc_fid1, var_name1, nc_fid2, var_name2):
+  """
+  " Copy the attributes of var_name1 in nc_fid1 to var_name2 in nc_fid2
+  """
+
+  # If dim names are not in nc files, do nothing
+  if not (var_name1 in nc_fid1.variables and var_name2 in nc_fid2.variables):
+    print('Variable names do not exist in the netcdf files.')
+    return nc_fid2
+
+  # Copy variable attributes
+  var1 = nc_fid1.variables[var_name1]
+  var2 = nc_fid2.variables[var_name2]
+  for attr_name in var1.ncattrs():
+    setattr(var2, attr_name, getattr(var1, attr_name))
+
+  return nc_fid2
 
 
 if __name__ == '__main__':

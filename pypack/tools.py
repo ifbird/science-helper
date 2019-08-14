@@ -9,23 +9,49 @@ from pyhdf.SD import *
 from .parameters import *
 
 
-def data_lrg2grg(data_lrg, lon_lrg, lat_lrg, land_ind, lon_grg, lat_grg):
+def calc_land_ind_in_grg_grid(lon_lrg, lat_lrg, lon_grg, lat_grg):
+  """
+  " Obtain the indices of lon and lat for each land grid in the global grid: land_ind
+  "
+  " Find lon and lat indices for land grids in global grids
+  " For the i-th grid saved in the Lu2018 data,
+  " the land lon and lat are: lon_land[i], lat_land[i]
+  " the lon and lat in the global grid: lon_glob[land_ind[i, 1]][land_ind[i, 0]], lat_glob[land_ind[i, 1]]
+  " In order to verify if the point in land and globe is close enough,
+  " differences of lon and lat are calculated as diff_lg for each point at land grid and global grid.
+  """
+
+  ngrid_lrg = lon_lrg.size
+
+  land_ind = np.zeros((ngrid_lrg, 4)).astype(int)  # save the lon and lat index in the global grid
+  for i, (lon, lat) in enumerate(zip(lon_lrg, lat_lrg)):
+    # lat
+    ilat = (np.abs(lat - lat_grg)).argmin()
+  
+    # lon
+    ilon = (np.abs(lon - lon_grg[ilat])).argmin()
+  
+    # Save the indices to the land_ind array, and the errors
+    land_ind[i, :] = ilon, ilat, lon-lon_grg[ilat][ilon], lat-lat_grg[ilat]
+    
+  return land_ind
+
+
+def data_lrg2grg(data_lrg, land_ind, lon_grg, lat_grg):
   """
   " Fill the data of one variable in grg grid with data in lrg grid
   " 
   " Input:
-  "   data_lrg: the dataset at land grid
-  "   lon_lrg: lon for land grid
-  "   lat_lrg: lat for land grid
-  "   land_ind: indices of lon and lat of lrg in grg
-  "   lon_grg: lon of grg grid for each lat
+  "   data_lrg: (ngrid_lrg, ), the dataset at land grid
+  "   land_ind: (ngrid_lrg, 4), indices of lon and lat of lrg in grg
+  "   lon_grg: nlat_grg lists, lon of grg grid for each lat
   "   lat_grg: lat of grg grid
   " Output:
   "   data_grg: data at global reduced Gaussian grid
   "             data_grg[nlat][nlon]: 
   """
 
-  ngrid_lrg = lon_lrg.size
+  ngrid_lrg = data_lrg.size
   nlat_grg = lat_grg.size
 
   # Put land data in lrg to grg
@@ -80,7 +106,7 @@ def data_lrg2gxx(data_lrg, lon_lrg, lat_lrg, land_ind, lon_grg, lat_grg, lon_gxx
   """
   " Interpolate data from lrg grid to gxx grid
   """
-  data_grg = data_lrg2grg(data_lrg, lon_lrg, lat_lrg, land_ind, lon_grg, lat_grg)
+  data_grg = data_lrg2grg(data_lrg, land_ind, lon_grg, lat_grg)
   data_gxx = data_grg2gxx(data_grg, lon_grg, lat_grg, lon_gxx, lat_gxx, kind)
 
   return data_gxx
@@ -151,33 +177,6 @@ def calc_gxx_grid(xbeg, xend, dlon, ybeg, yend, dlat):
   lat_gxx = np.linspace(ybeg+dlat/2, yend-dlat/2, nlat)
 
   return lon_gxx, lat_gxx
-
-
-def calc_land_ind_in_grg_grid(lon_lrg, lat_lrg, lon_grg, lat_grg):
-  """
-  " Obtain the indices of lon and lat for each land grid in the global grid: land_ind
-  "
-  " Find lon and lat indices for land grids in global grids
-  " For the i-th grid saved in the Lu2018 data,
-  " the land lon and lat are: lon_land[i], lat_land[i]
-  " the lon and lat in the global grid: lon_glob[land_ind[i, 1]][land_ind[i, 0]], lat_glob[land_ind[i, 1]]
-  " In order to verify if the point in land and globe is close enough,
-  " differences of lon and lat are calculated as diff_lg for each point at land grid and global grid.
-  """
-  ngrid_lrg = lon_lrg.size
-
-  land_ind = np.zeros((ngrid_lrg, 4)).astype(int)  # save the lon and lat index in the global grid
-  for i, (lon, lat) in enumerate(zip(lon_lrg, lat_lrg)):
-    # lat
-    ilat = (np.abs(lat - lat_grg)).argmin()
-  
-    # lon
-    ilon = (np.abs(lon - lon_grg[ilat])).argmin()
-  
-    # Save the indices to the land_ind array, and the errors
-    land_ind[i, :] = ilon, ilat, lon-lon_grg[ilat][ilon], lat-lat_grg[ilat]
-    
-  return land_ind
 
 
 def create_tm5_input_monthly_veg_file(fname, year, month, lon, lat, cvl, cvh, tv, \
