@@ -33,6 +33,7 @@ def eol(n=1):
   """
   " Change n new lines.
   " Calling set_sysstdout before eol is recommended.
+  " Use eol directly, do not use print(eol).
   """
   # printf("%s" % chr(10) * n)
   sys.stdout.write("%s" % chr(10) * n)
