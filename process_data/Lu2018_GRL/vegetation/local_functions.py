@@ -153,6 +153,9 @@ reg_sahara = ( 10, 30,  -20,  40)  # Sahara region in Ergerer2018
 
 
 def set_dir(d):
+  """
+  " Create a dir d if not existed
+  """
   try:
     os.makedirs(d)
     return d
