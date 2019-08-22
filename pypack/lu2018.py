@@ -12,8 +12,9 @@ import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 
-from .parameters import *
-from .tools import *
+from tm5_parameters import tm5
+from constants import *
+import tools
 
 
 """
@@ -36,6 +37,9 @@ lat_nhrg_N80 = tm5['lat_N80']
 # Number of veg type
 nvt = tm5['nvt']
 
+# Number of months per year
+nmon = 12
+
 
 #==============================================================================#
 #
@@ -47,8 +51,13 @@ def print_debug(info, debug):
     print(info)
 
 
-def read_lu2018_veg_raw_data(fname):
-  # Read from txt, delimiter is any space (' ' or '\t'), no header
+def read_data_rawpd(fname):
+  """
+  " Read from txt, delimiter is any space (' ' or '\t'), no header
+  "
+  " The data are saved in their original structure: (ngrid_lrg, n_columns)
+  " The column names are saved in rawpd.columns
+  """
   rawpd = pd.read_csv(fname, sep='\s+', header=None)
   
   # Set column names
@@ -60,6 +69,89 @@ def read_lu2018_veg_raw_data(fname):
     ['vtl', 'vth']
 
   return rawpd
+
+
+def read_data_lrg(fname):
+  """
+  " Organize the raw data to be easier for further processing
+  "
+  " lail, laih, cvl, cvh: (nyear, nmon, ngrid_lrg)
+  " vtl, vth: (nyear, ngrid_lrg)
+  " vtl_set, vth_set, vt_set: lists of the low, high and all vegetation types in number,
+  "                           check tm5['veg_type']
+  " tv: (nvt, nyear, ngrid_lrg), either 0 or 100 in Lu2018
+  """
+  data_lrg = {}
+  
+  #
+  # monthly mean LAI of low and high veg
+  # 1850:
+  #   12 months
+  #   o o o ... o
+  #   ...          ngrid_lrg (14070)
+  #   o o o ... o
+  # 1851:
+  #   ...  similar with 1850
+  #
+  data_lrg['lail'] = np.transpose( np.reshape(rawpd.loc[:, 'lail01':'lail12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
+  data_lrg['laih'] = np.transpose( np.reshape(rawpd.loc[:, 'laih01':'laih12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
+  
+  #
+  # monthly mean coverage of low and high veg
+  # The structure is similar with LAI
+  #
+  data_lrg['cvl'] = np.transpose( np.reshape(rawpd.loc[:, 'cvl01':'cvl12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
+  data_lrg['cvh'] = np.transpose( np.reshape(rawpd.loc[:, 'cvh01':'cvh12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
+  
+  #
+  # veg types, one type per year but may change interannually
+  # ngrid_lrg
+  # o o o ... o
+  # ...         10 years
+  # o o o ... o
+  #
+  data_lrg['vtl'] = np.reshape(rawpd.loc[:, 'vtl'].values, (nyear, ngrid_lrg))
+  data_lrg['vth'] = np.reshape(rawpd.loc[:, 'vth'].values, (nyear, ngrid_lrg))
+  
+  # Find the set of low veg types
+  vtl_set = np.unique(data_lrg['vtl'])  # low vegetation
+  vtl_set = np.delete( vtl_set, np.argwhere(vtl_set == 0) )  # delete zero elements which means no veg
+  data_lrg['vtl_set'] = vtl_set
+  
+  # Find the set of high veg types
+  vth_set = np.unique(data_lrg['vth'])
+  vth_set = np.delete( vth_set, np.argwhere(vth_set == 0) )
+  data_lrg['vth_set'] = vth_set
+  
+  # Find the set of veg types
+  vt_set = np.unique( np.concatenate((vtl_set, vth_set)) )  # all the vegetation types
+  data_lrg['vt_set'] = vt_set
+  
+  #
+  # percentage of each type from 01 to 20
+  #
+  data_lrg['tv'] = np.zeros((nvt, nyear, ngrid_lrg))
+  
+  # low veg
+  for v in vtl_set:
+    tv_ind = int(v-1)  # index is veg type minus 1
+    data_lrg['tv'][tv_ind][ data_lrg['vtl'] == v ] = 100.0  # all veg belong to this low tv type
+  
+  # high veg
+  for v in vth_set:
+    tv_ind = int(v-1)  # index is veg type minus 1
+    data_lrg['tv'][tv_ind][ data_lrg['vth'] == v ] = 100.0  # all veg belong to this high tv type
+
+  # Grid information
+  data_lrg['lon_lrg'], data_lrg['lat_lrg'] = rawpd['lon'][0:ngrid_lrg], rawpd['lat'][0:ngrid_lrg]
+
+  # lon and lat in grg grid
+  # data_lrg['lon_grg'], data_lrg['lat_grg'] = tools.calc_grg_grid(nlon_nhrg_N80, lat_nhrg_N80)
+
+  # land indices (lrg grid) in grg grid
+  # data_lrg['land_ind'] = tools.calc_land_ind_in_grg_grid( \
+  #   data['lon_lrg'], data['lat_lrg'], data['lon_grg'], data['lat_grg'])
+
 
 #==============================================================================#
 #
@@ -99,20 +191,20 @@ class Lu2018():
     cls.lon_lrg, cls.lat_lrg = lon_lrg, lat_lrg
 
     # lon and lat in grg grid
-    cls.lon_grg, cls.lat_grg = calc_grg_grid(nlon_nhrg_N80, lat_nhrg_N80)
+    cls.lon_grg, cls.lat_grg = tools.calc_grg_grid(nlon_nhrg_N80, lat_nhrg_N80)
 
     # land indices (lrg grid) in grg grid
-    cls.land_ind = calc_land_ind_in_grg_grid(cls.lon_lrg, cls.lat_lrg, cls.lon_grg, cls.lat_grg)
+    cls.land_ind = tools.calc_land_ind_in_grg_grid(cls.lon_lrg, cls.lat_lrg, cls.lon_grg, cls.lat_grg)
 
     # Global regular grids, west --> east, south --> north
     xbeg, xend = -180, 180
     ybeg, yend = -90, 90
 
     dlon, dlat = 1.0, 1.0
-    cls.lon_g11, cls.lat_g11 = calc_gxx_grid(xbeg, xend, dlon, ybeg, yend, dlat)
+    cls.lon_g11, cls.lat_g11 = tools.calc_gxx_grid(xbeg, xend, dlon, ybeg, yend, dlat)
 
     dlon, dlat = 3.0, 2.0
-    cls.lon_g32, cls.lat_g32 = calc_gxx_grid(xbeg, xend, dlon, ybeg, yend, dlat)
+    cls.lon_g32, cls.lat_g32 = tools.calc_gxx_grid(xbeg, xend, dlon, ybeg, yend, dlat)
 
     # Set it to true to avoid repeating
     cls.isset = True
@@ -140,7 +232,7 @@ class Lu2018():
     """
 
     # Read raw data from file fname in pandas dataframe format
-    rawpd = read_lu2018_veg_raw_data(fname)
+    rawpd = read_data_rawpd(fname)
   
     nyear = 10  # for simplicity
     nrow = len(rawpd.index)  # number of rows of raw data file, 10407*10
@@ -150,70 +242,8 @@ class Lu2018():
     if not Lu2018.isset:
       Lu2018.set_class_vars(nyear, ngrid_lrg, rawpd['lon'][0:ngrid_lrg], rawpd['lat'][0:ngrid_lrg])
 
-    # Initiate the data dict
-    data_lrg = {}
-  
-    #
-    # monthly mean LAI of low and high veg
-    # 1850:
-    #   12 months
-    #   o o o ... o
-    #   ...          ngrid_lrg (14070)
-    #   o o o ... o
-    # 1851:
-    #   ...  similar with 1850
-    #
-    data_lrg['lail'] = np.transpose( np.reshape(rawpd.loc[:, 'lail01':'lail12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
-    data_lrg['laih'] = np.transpose( np.reshape(rawpd.loc[:, 'laih01':'laih12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
-    
-    #
-    # monthly mean coverage of low and high veg
-    # The structure is similar with LAI
-    #
-    data_lrg['cvl'] = np.transpose( np.reshape(rawpd.loc[:, 'cvl01':'cvl12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
-    data_lrg['cvh'] = np.transpose( np.reshape(rawpd.loc[:, 'cvh01':'cvh12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
-    
-    #
-    # veg types, one type per year but may change interannually
-    # ngrid_lrg
-    # o o o ... o
-    # ...         10 years
-    # o o o ... o
-    #
-    data_lrg['vtl'] = np.reshape(rawpd.loc[:, 'vtl'].values, (nyear, ngrid_lrg))
-    data_lrg['vth'] = np.reshape(rawpd.loc[:, 'vth'].values, (nyear, ngrid_lrg))
-
-    # Find the set of low veg types
-    vtl_set = np.unique(data_lrg['vtl'])  # low vegetation
-    vtl_set = np.delete( vtl_set, np.argwhere(vtl_set == 0) )  # delete zero elements which means no veg
-    data_lrg['vtl_set'] = vtl_set
-  
-    # Find the set of high veg types
-    vth_set = np.unique(data_lrg['vth'])
-    vth_set = np.delete( vth_set, np.argwhere(vth_set == 0) )
-    data_lrg['vth_set'] = vth_set
-  
-    # Find the set of veg types
-    vt_set = np.unique( np.concatenate((vtl_set, vth_set)) )  # all the vegetation types
-    data_lrg['vt_set'] = vt_set
-
-    #
-    # percentage of each type from 01 to 20
-    #
-    data_lrg['tv'] = np.zeros((nvt, nyear, ngrid_lrg))
-
-    # low veg
-    for v in vtl_set:
-      tv_ind = int(v-1)  # index is veg type minus 1
-      data_lrg['tv'][tv_ind][ data_lrg['vtl'] == v ] = 100.0  # all veg belong to this low tv type
-
-    # high veg
-    for v in vth_set:
-      tv_ind = int(v-1)  # index is veg type minus 1
-      data_lrg['tv'][tv_ind][ data_lrg['vth'] == v ] = 100.0  # all veg belong to this high tv type
-
-    # Set self variables
-    self.data_lrg = data_lrg
+    # Read data_lrg
+    self.data_lrg = read_data_lrg(fname)
 
 
   def calc_data_gxx(self, lon_gxx, lat_gxx, debug=False):
@@ -258,7 +288,7 @@ class Lu2018():
           # print_debug('Month {0} ...'.format(im+1), debug)
 
           data_gxx[v][iy, im][:, :] = \
-              data_lrg2gxx(self.data_lrg[v][iy, im, :], \
+              tools.data_lrg2gxx(self.data_lrg[v][iy, im, :], \
               lon_lrg, lat_lrg, land_ind, \
               lon_grg, lat_grg, \
               lon_gxx, lat_gxx, \
@@ -279,7 +309,7 @@ class Lu2018():
         # print_debug('Year number {0} ...'.format(iy), debug)
 
         data_gxx[v][iy][:, :] = \
-            data_lrg2gxx(self.data_lrg[v][iy, :], \
+            tools.data_lrg2gxx(self.data_lrg[v][iy, :], \
             lon_lrg, lat_lrg, land_ind, \
             lon_grg, lat_grg, \
             lon_gxx, lat_gxx, \
@@ -305,55 +335,12 @@ class Lu2018():
     return data_gxx
 
 
+
+#===========================================================================#
 #
-# Some parameters
+# Old style to process the data#
 #
-
-DPI = 150
-
-
-# Number of months per year
-nmon = 12
-
-# Case list
-clist = ['pi', 'mh', 'mg']
-
-
-
-# def get_lat_lon_reduced_gaussian(lat, nlon):
-#   # Number of all latitudes
-#   nlat = 2 * lat.size
-#   lat = np.zeros((nlat,))
-#   lon = np.zeros((nlat, 
-
-
-# Create the dir d if not existed, return d
-def set_dir(d):
-  try:
-    os.makedirs(d)
-    return d
-  except OSError as e:
-    if e.errno != errno.EEXIST:  # if the error is not 'already existed'
-      raise
-    else:
-      return d
-
-
-def lu2018_read_file_to_rawpd(fname):
-  # Read from txt, delimiter is any space (' ' or '\t'), no header
-  rawpd = pd.read_csv(fname, sep='\s+', header=None)
-  
-  # Set column names
-  rawpd.columns = ['lon', 'lat', 'year'] + \
-      ['lail{:02d}'.format(i+1) for i in range(nmon)] + \
-      ['laih{:02d}'.format(i+1) for i in range(nmon)] + \
-      ['cvl{:02d}'.format(i+1) for i in range(nmon)] + \
-      ['cvh{:02d}'.format(i+1) for i in range(nmon)] + \
-      ['vtl', 'vth']
-  
-  return rawpd
-
-
+#===========================================================================#
 def lu2018_process_rawpd_to_cook(rawpd):
   """
   lon, lat: the same for each year
