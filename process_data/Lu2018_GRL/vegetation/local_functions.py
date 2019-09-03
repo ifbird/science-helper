@@ -1770,3 +1770,103 @@ def plotax_pcolormesh(ax, lon, lat, datam, vmin=None, vmax=None, pm='cyl', reg=r
     h = m.pcolormesh(px, py, datam, cmap=cmap, zorder=3, alpha=alpha)
   
   return m, h
+
+
+
+# Create tm5 input vegetation files in the netcdf format
+def create_tm5_input_veg_file_netcdf(fname, lon, lat, tv, cvh, cvl, fid_raw, verb=False, output='output_veg.txt'):
+# def create_tm5_input_veg_file(fname, lon, lat, tv, cvh, cvl, fid_raw):
+  """
+  " fname: name of tm5 input veg hdf4 file
+  " input_data: including tv, cvh, cvl, lon, lat
+  " fid_raw: 
+  """
+
+  # Delete file if exists, so create a totally new file
+  if os.path.exists(fname):
+    os.remove(fname)
+  
+  # Read input data modified from Lu2018
+  # tv  = input_data['tv_dom_11']
+  # cvh = input_data['cvh_dom_avg_11']
+  # cvl = input_data['cvl_dom_avg_11']
+  # lon = input_data['lon_11']
+  # lat = input_data['lat_11']
+  nlon, nlat = lon.size, lat.size
+  
+  # Open a file to write
+  fid = SD(fname, SDC.WRITE|SDC.CREATE)
+  
+  # Set global attributes according to fid_raw
+  fid.ae       = fid_raw.ae
+  fid.area_m2  = fid_raw.area_m2
+  fid.fname    = fname
+  fid.format   = fid_raw.format
+  fid.grav     = fid_raw.grav
+  fid.gridtype = fid_raw.gridtype
+  fid.latmax   = fid_raw.latmax
+  fid.latmin   = fid_raw.latmin
+  fid.lonmax   = fid_raw.lonmax
+  fid.lonmin   = fid_raw.lonmin
+  
+  # Create datasets for lon and lat
+  d = fid.create('LAT', SDC.FLOAT64, nlat)
+  dim0 = d.dim(0)
+  dim0.setname('LAT')
+  d[:] = lat
+  d.endaccess()
+  
+  d = fid.create('LON', SDC.FLOAT64, nlon)
+  dim0 = d.dim(0)
+  dim0.setname('LON')
+  d[:] = lon
+  d.endaccess()
+  
+  # Create datasets for tv
+  for i in range(nvt):
+    tvstr = tm5_tvname[i]
+    d = fid.create(tvstr, SDC.FLOAT64, (nlat, nlon))
+    dim0 = d.dim(0)
+    dim1 = d.dim(1)
+    dim0.setname('LAT')
+    dim1.setname('LON')
+  
+    d[:] = tv[i, :, :]
+  
+    # Close dataset
+    d.endaccess()
+  
+  # Create datasets for cvh and cvl
+  d = fid.create('cvh', SDC.FLOAT64, (nlat, nlon))
+  dim0 = d.dim(0)
+  dim1 = d.dim(1)
+  dim0.setname('LAT')
+  dim1.setname('LON')
+  d[:] = cvh
+  d.endaccess()
+  
+  d = fid.create('cvl', SDC.FLOAT64, (nlat, nlon))
+  dim0 = d.dim(0)
+  dim1 = d.dim(1)
+  dim0.setname('LAT')
+  dim1.setname('LON')
+  d[:] = cvl
+  d.endaccess()
+  
+  # Add variable attributes the same as in tm5 veg 2009 raw file
+  ds_names = fid.datasets()
+  ds_raw = fid_raw.select('tv01')
+  for dn in ds_names:
+    ds = fid.select(dn)
+    if not ds.iscoordvar():
+      for attr_name, attr_value in ds_raw.attributes().items():
+        setattr(ds, attr_name, attr_value)
+  
+  # Close file
+  fid.end()
+  # fid_raw.end()
+  
+  # Check file info
+  fid, fattr, fdset = pf.h4dump(fname, verb, output)
+
+  return fid, fattr, fdset

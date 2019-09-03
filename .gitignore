@@ -3,5 +3,6 @@
 *.ipynb
 *.pyc
 *.nc
+*.swp
 
 process_data/Lu2018_GRL/figures/*

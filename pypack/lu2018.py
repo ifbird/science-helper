@@ -40,6 +40,8 @@ nvt = tm5['nvt']
 # Number of months per year
 nmon = 12
 
+# nyear = 10
+
 
 #==============================================================================#
 #
@@ -81,8 +83,17 @@ def read_data_lrg(fname):
   "                           check tm5['veg_type']
   " tv: (nvt, nyear, ngrid_lrg), either 0 or 100 in Lu2018
   """
+  # Read the raw pandas data
+  rawpd = read_data_rawpd(fname)
+
+  # Some parameters
+  nyear = 10  # for simplicity
+  nrow = len(rawpd.index)  # number of rows of raw data file, 10407*10
+  ngrid_lrg = int(nrow/nyear)  # number of land grids, 10407
+
+  # Set the data for reduced grid in land
   data_lrg = {}
-  
+
   #
   # monthly mean LAI of low and high veg
   # 1850:
@@ -151,6 +162,7 @@ def read_data_lrg(fname):
   # land indices (lrg grid) in grg grid
   # data_lrg['land_ind'] = tools.calc_land_ind_in_grg_grid( \
   #   data['lon_lrg'], data['lat_lrg'], data['lon_grg'], data['lat_grg'])
+  return data_lrg
 
 
 #==============================================================================#
@@ -331,6 +343,8 @@ class Lu2018():
       tv_ind = int(v-1)  # index is veg type minus 1
       mask = data_gxx['vth'] == v
       data_gxx['tv'][tv_ind][mask] = 100.0  # all veg belong to this high tv type
+
+    self.data_gxx = data_gxx
 
     return data_gxx
 

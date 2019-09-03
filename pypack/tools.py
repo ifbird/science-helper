@@ -181,7 +181,7 @@ def calc_gxx_grid(xbeg, xend, dlon, ybeg, yend, dlat, mode='c'):
 
     lon_gxx = np.linspace(xbeg+dlon/2, xend-dlon/2, nlon)
     lat_gxx = np.linspace(ybeg+dlat/2, yend-dlat/2, nlat)
-  elif mode = 'b':
+  elif mode == 'b':
     nlon = int(round( (xend - xbeg)/dlon )) + 1
     nlat = int(round( (yend - ybeg)/dlat )) + 1
 
