@@ -1,0 +1,86 @@
+" compatible
+set nocompatible
+
+" set tab environment
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+autocmd FileType make setlocal noexpandtab " turn off expandtab for editing makefiles
+
+filetype plugin indent on
+syntax on
+
+" set textwidth
+set tw=0
+
+" display the line number and ruler
+set number
+set ruler
+
+" display the list characters
+" set list
+" set listchars=eol:$,tab:>-
+
+" always show the tab line
+set showtabline=2
+
+" set the color scheme
+" let g:solarized_termcolors=16
+" colorscheme elflord
+se t_Co=16
+" set background=dark
+" colorscheme solarized
+colorscheme desert
+
+" set the paste mode
+" set paste
+
+" set the autoindent
+set autoindent
+
+" set syntax on
+" syntax on
+" filetype indent plugin on
+
+" Ensure correct highlighting for 
+" Fortran free-form source code 
+" and turn syntax highlighting on
+let fortran_free_source=1
+let fortran_do_enddo=1
+
+" Make vim echo commands as they
+" are being entered.
+set showcmd
+
+" Fix backspace key
+set bs=2
+
+" Set up searching so
+" that it jumps to matches
+" as the word is being
+" entered and is case-insensitive
+set incsearch
+set ignorecase
+set smartcase
+
+" Uncomment the following lines to make vim automatically create a backup copy
+" each time a file is edited. If you enable this feature, be sure to:
+" $ mkdir ~/codeBackups
+" or it won't work.
+" set backupdir=~/codeBackups
+" set backup
+
+au BufNewFile,BufRead *.f,*.for,*.fpp,*.f95,*.f90,*.F90 set filetype=fortran
+
+" make vim save and load the folding of the document each time it loads
+" also places the cursor in the last place that it was left.
+au BufWinLeave *.* mkview
+au BufWinEnter *.* silent loadview
+
+" Search visullay selected part by typing '//'
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
+
+" print a message when this file is loaded
+echo "Loading ~/.vimrc done."
