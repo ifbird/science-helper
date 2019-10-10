@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 from tm5_parameters import tm5
 from constants import *
 import tools
+import netcdf
 
 
 """
@@ -53,6 +54,21 @@ def print_debug(info, debug):
     print(info)
 
 
+def read_bvoc_data_rawpd(fname):
+  """
+  " Read from txt, delimiter is any space (' ' or '\t'), one-line header
+  "
+  " The data are saved in their original structure: (ngrid_lrg, n_columns)
+  " The column names are saved in rawpd.columns
+  """
+  rawpd = pd.read_csv(fname, sep='\s+', header=0)
+  
+  # Set column names
+  rawpd.columns = ['lon', 'lat', 'year'] + ['er{:02d}'.format(i+1) for i in range(nmon)]
+
+  return rawpd
+
+
 def read_data_rawpd(fname):
   """
   " Read from txt, delimiter is any space (' ' or '\t'), no header
@@ -71,6 +87,45 @@ def read_data_rawpd(fname):
     ['vtl', 'vth']
 
   return rawpd
+
+
+def read_bvoc_data_lrg(fname):
+  """
+  " Organize the raw data to be easier for further processing
+  "
+  " lail, laih, cvl, cvh: (nyear, nmon, ngrid_lrg)
+  " vtl, vth: (nyear, ngrid_lrg)
+  " vtl_set, vth_set, vt_set: lists of the low, high and all vegetation types in number,
+  "                           check tm5['veg_type']
+  " tv: (nvt, nyear, ngrid_lrg), either 0 or 100 in Lu2018
+  """
+  # Read the raw pandas data
+  rawpd = read_bvoc_data_rawpd(fname)
+
+  # Some parameters
+  nyear = 10  # for simplicity
+  nrow = len(rawpd.index)  # number of rows of raw data file, 10407*10
+  ngrid_lrg = int(nrow/nyear)  # number of land grids, 10407
+
+  # Set the data for reduced grid in land
+  data_lrg = {}
+
+  #
+  # monthly mean LAI of low and high veg
+  # 1850:
+  #   12 months
+  #   o o o ... o
+  #   ...          ngrid_lrg (14070)
+  #   o o o ... o
+  # 1851:
+  #   ...  similar with 1850
+  #
+  data_lrg['er'] = np.transpose( np.reshape(rawpd.loc[:, 'er01':'er12'].values, (nyear, ngrid_lrg, nmon)), (0, 2, 1) )  # [year, mon, grid]
+  
+  # Grid information
+  data_lrg['lon'], data_lrg['lat'] = rawpd['lon'][0:ngrid_lrg].values, rawpd['lat'][0:ngrid_lrg].values
+
+  return data_lrg
 
 
 def read_data_lrg(fname):
@@ -154,14 +209,8 @@ def read_data_lrg(fname):
     data_lrg['tv'][tv_ind][ data_lrg['vth'] == v ] = 100.0  # all veg belong to this high tv type
 
   # Grid information
-  data_lrg['lon_lrg'], data_lrg['lat_lrg'] = rawpd['lon'][0:ngrid_lrg], rawpd['lat'][0:ngrid_lrg]
+  data_lrg['lon'], data_lrg['lat'] = rawpd['lon'][0:ngrid_lrg], rawpd['lat'][0:ngrid_lrg]
 
-  # lon and lat in grg grid
-  # data_lrg['lon_grg'], data_lrg['lat_grg'] = tools.calc_grg_grid(nlon_nhrg_N80, lat_nhrg_N80)
-
-  # land indices (lrg grid) in grg grid
-  # data_lrg['land_ind'] = tools.calc_land_ind_in_grg_grid( \
-  #   data['lon_lrg'], data['lat_lrg'], data['lon_grg'], data['lat_grg'])
   return data_lrg
 
 
@@ -348,6 +397,158 @@ class Lu2018():
 
     return data_gxx
 
+
+class Lu2018Bvoc():
+  """
+  " Dataset for the BVOC data used in Lu2018
+  " All the dataset share the same coordinate system
+  """
+
+  #========================================#
+  # Class variables
+  #========================================#
+  isset = False
+
+  # Set to default none
+  nyear = None
+  ngrid_lrg = None
+  lon_lrg, lat_lrg = None, None
+  lon_grg, lat_grg = None, None
+  land_ind = None
+  lon_g11, lat_g11 = None, None
+  lon_g32, lat_g32 = None, None
+
+
+  #========================================#
+  # Class methods
+  #========================================#
+  @classmethod
+  def set_class_vars(cls, nyear, ngrid_lrg, lon_lrg, lat_lrg):
+    cls.nyear = nyear
+    cls.ngrid_lrg = ngrid_lrg
+
+    # lon and lat in lrg grid
+    cls.lon_lrg, cls.lat_lrg = lon_lrg, lat_lrg
+
+    # lon and lat in grg grid
+    cls.lon_grg, cls.lat_grg = tools.calc_grg_grid(nlon_nhrg_N80, lat_nhrg_N80)
+
+    # land indices (lrg grid) in grg grid
+    cls.land_ind = tools.calc_land_ind_in_grg_grid(cls.lon_lrg, cls.lat_lrg, cls.lon_grg, cls.lat_grg)
+
+    # Global regular grids, west --> east, south --> north
+    xbeg, xend = -180, 180
+    ybeg, yend = -90, 90
+
+    dlon, dlat = 1.0, 1.0
+    cls.lon_g11, cls.lat_g11 = tools.calc_gxx_grid(xbeg, xend, dlon, ybeg, yend, dlat)
+
+    dlon, dlat = 3.0, 2.0
+    cls.lon_g32, cls.lat_g32 = tools.calc_gxx_grid(xbeg, xend, dlon, ybeg, yend, dlat)
+
+    # Set it to true to avoid repeating
+    cls.isset = True
+
+
+  def __init__(self, fname):
+    """
+    Raw data structure:
+    x: lon | lat | year | Jan - Dec
+    y: all the land grid, loop for each year
+
+    lon, lat: the same for each year
+    year: 1850 - 1859
+    """
+
+    # Read raw data from file fname in pandas dataframe format
+    rawpd = read_bvoc_data_rawpd(fname)
+  
+    nyear = 10  # for simplicity
+    nrow = len(rawpd.index)  # number of rows of raw data file, 10407*10
+    ngrid_lrg = int(nrow/nyear)  # number of land grids, 10407
+
+    # Set class variables
+    if not Lu2018Bvoc.isset:
+      Lu2018Bvoc.set_class_vars(nyear, ngrid_lrg, rawpd['lon'][0:ngrid_lrg], rawpd['lat'][0:ngrid_lrg])
+
+    # Read data_lrg
+    self.data_lrg = read_bvoc_data_lrg(fname)
+
+
+  def calc_data_gxx(self, lon_gxx, lat_gxx, debug=False):
+    """
+    " Get data_gxx from self.data_lrg
+    """
+
+    # Set parameters
+    nyear = Lu2018Bvoc.nyear
+    ngrid_lrg = Lu2018Bvoc.ngrid_lrg
+
+    lon_lrg, lat_lrg = Lu2018Bvoc.lon_lrg, Lu2018Bvoc.lat_lrg
+    land_ind = Lu2018Bvoc.land_ind
+    lon_grg, lat_grg = Lu2018Bvoc.lon_grg, Lu2018Bvoc.lat_grg
+
+    nlon_gxx, nlat_gxx = lon_gxx.size, lat_gxx.size
+
+    # Calculate data_grg
+    data_gxx = {}
+
+    # Add new coordinates to data_gxx
+    data_gxx['lon'], data_gxx['lat'] = lon_gxx, lat_gxx
+
+    # Interpolation is linear for lail, laih, cvl, and cvh
+    # [year, mon, grid] --> [year, mon, lon_gxx, lat_gxx]
+
+    # Debug info
+    print_debug('Interpolating {0} ...'.format('er'), debug)
+
+    # Init
+    data_gxx['er'] = np.zeros( (nyear, nmon, nlon_gxx, nlat_gxx) )
+
+    # Interpolate for each month in every year
+    for iy in range(nyear):
+      # Debug info
+      print_debug('Year number {0} ...'.format(iy), debug)
+
+      for im in range(nmon):
+        # Debug info
+        # print_debug('Month {0} ...'.format(im+1), debug)
+
+        data_gxx['er'][iy, im][:, :] = \
+          tools.data_lrg2gxx(self.data_lrg['er'][iy, im, :], \
+          lon_lrg, lat_lrg, land_ind, \
+          lon_grg, lat_grg, \
+          lon_gxx, lat_gxx, \
+          kind='linear')
+
+    self.data_gxx = data_gxx
+
+    return data_gxx
+  
+  
+  def save_data_gxx_to_netcdf(self, fname):
+    year = np.arange(1850, 1860)
+    mon  = np.arange(1, 13)
+
+    netcdf.save_single_data_to_netcdf( \
+      fname, \
+      ['year', 'mon', 'lon', 'lat'], \
+      [year, mon, self.data_gxx['lon'], self.data_gxx['lat']], \
+      'data_gxx', \
+      self.data_gxx['er'] \
+      )
+
+
+  def save_data_to_npz(self, fname):
+    # Save the data
+    np.savez(fname, \
+             lon_lrg = Lu2018Bvoc.lon_lrg, \
+             lat_lrg = Lu2018Bvoc.lat_lrg, \
+             lon_g11 = Lu2018Bvoc.lon_g11, \
+             lat_g11 = Lu2018Bvoc.lat_g11, \
+             data_lrg = self.data_lrg, \
+             data_gxx = self.emis_gxx, \
+            )
 
 
 #===========================================================================#

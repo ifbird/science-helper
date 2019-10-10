@@ -1,4 +1,5 @@
-# from .fileio import *
+import numpy as np
+
 from fileio import *
 
 from netCDF4 import Dataset
@@ -166,6 +167,37 @@ def copy_variable_attributes(nc_fid1, var_name1, nc_fid2, var_name2):
     setattr(var2, attr_name, getattr(var1, attr_name))
 
   return nc_fid2
+
+
+def save_single_data_to_netcdf(fname, dname_list, dim_list, vname, var):
+  """
+  " Simply save a variable to a nc file
+  "
+  " fname: file name
+  "
+  " The order of dimensions should be consistent, e.g.,
+  "   dname_list: ['time', 'lat', 'lon']
+  "   dim_list  : [time, lat, lon]
+  "   vname     : ['data']
+  "   var       : [data(time, lat, lon)]
+  """
+
+  # Open a file to write
+  fid = Dataset(fname, 'w')
+
+  # Create dimensions
+  for dname, dim in zip(dname_list, dim_list):
+    ndim = len(dim)
+    fid.createDimension(dname, ndim)
+    dim_ref = fid.createVariable(dname, np.dtype('float32'), (dname,))
+    dim_ref[:] = dim[:]
+
+  # Create new variables
+  var_ref = fid.createVariable(vname, np.dtype('float32'), tuple(dname_list))
+  var_ref[:] = var[:]
+
+  # Close the file
+  fid.close()
 
 
 if __name__ == '__main__':

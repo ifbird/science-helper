@@ -1,4 +1,4 @@
-from .fileio import *
+from fileio import *
 
 from pyhdf.SD import *
 
