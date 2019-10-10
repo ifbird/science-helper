@@ -6,3 +6,4 @@
 *.swp
 
 process_data/Lu2018_GRL/figures/*
+process_data/generate_tm5_input/megan/*.png
