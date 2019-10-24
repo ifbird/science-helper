@@ -3,6 +3,7 @@ import sys
 
 from scipy import interpolate
 import numpy as np
+import numpy.ma as ma
 
 from pyhdf.SD import *
 
@@ -321,6 +322,7 @@ def show_statistics(data):
   "
   " np.quantile is added in 1.15.0
   """
+  _shape  = data.shape
   _min    = np.nanmin(data.flatten())
   _max    = np.nanmax(data.flatten())
   _q1     = np.percentile(data.flatten(), 25)
@@ -329,6 +331,7 @@ def show_statistics(data):
   _mean   = np.nanmean(data.flatten())
   _std    = np.nanstd(data.flatten())
   
+  print('Data shape: ', _shape)
   print('{0:>12s}{1:>12s}{2:>12s}{3:>12s}{4:>12s}{5:>12s}{6:>12s}'.format('min', 'q1', 'median', 'q3', 'max', 'mean', 'std'))
   print('{0:12.3e}{1:12.3e}{2:12.3e}{3:12.3e}{4:12.3e}{5:12.3e}{6:12.3e}'.format(_min, _q1, _median, _q3, _max, _mean, _std))
   
@@ -416,5 +419,3 @@ def interp_to_lonlat_3d(fname1, fname2, lon2, lat2, vname):
   var2_ref[:] = var2[:]
 
   fid2.close()
-
-

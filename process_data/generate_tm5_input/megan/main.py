@@ -12,6 +12,8 @@ from netCDF4 import Dataset
 import lu2018
 import netcdf
 
+from local import *
+
 
 #==============================================================================#
 # Set parameters
@@ -21,61 +23,27 @@ import netcdf
 # Raw Lu2018 BVOC data files
 #
 
-# Folder
-fdir_lu2018_bvoc = '/homeappl/home/putian/scripts/tm5-mp/data/lu2018_lpjg_monthly_bvoc/'
-fdir_lu2018_bvoc_case = {}
-fdir_lu2018_bvoc_case['pi' ] = fdir_lu2018_bvoc + '/out_bvoc_pi'
-fdir_lu2018_bvoc_case['mh1'] = fdir_lu2018_bvoc + '/out_bvoc_mh1'
-fdir_lu2018_bvoc_case['mh2'] = fdir_lu2018_bvoc + '/out_bvoc_mh2'
-
-# Lu2018 BVOC lpjg data file names of iso(prene) and mon(oterpenes)
+# Lu2018 BVOC lpjg data file names of iso(prene) and mon(oterpenes) in nc format
 fname_lu2018_iso = {}
-fname_lu2018_iso['pi' ] = fdir_lu2018_bvoc_case['pi' ] + '/miso_1850_1859_gxx.nc'
-fname_lu2018_iso['mh1'] = fdir_lu2018_bvoc_case['mh1'] + '/miso_1850_1859_gxx.nc'
-fname_lu2018_iso['mh2'] = fdir_lu2018_bvoc_case['mh2'] + '/miso_1850_1859_gxx.nc'
-
 fname_lu2018_mon = {}
-fname_lu2018_mon['pi' ] = fdir_lu2018_bvoc_case['pi' ] + '/mmon_1850_1859_gxx.nc'
-fname_lu2018_mon['mh1'] = fdir_lu2018_bvoc_case['mh1'] + '/mmon_1850_1859_gxx.nc'
-fname_lu2018_mon['mh2'] = fdir_lu2018_bvoc_case['mh2'] + '/mmon_1850_1859_gxx.nc'
+for c in case_list:
+  fname_lu2018_iso[c] = get_fname_lu2018_gxx(c, 'iso')
+  fname_lu2018_mon[c] = get_fname_lu2018_gxx(c, 'mon')
 
 
 #
 # Raw MEGAN emission data file name as a sample
 #
 
-# fdir_megan_sample = '/homeappl/home/putian/scripts/tm5-mp/data/lu2018_lpjg_monthly_bvoc/tm5_megan_input_sample/'
-# fname_megan_sample_iso = fdir_megan_sample + '/MEGAN-MACC_biogenic_2005_isoprene.nc'
-# fname_megan_sample_mon = fdir_megan_sample + '/MEGAN-MACC_biogenic_2005_monoterpenes.nc'
-
 fdir_megan_sample = '/proj/atm/TM5_EMISS/MEGAN'
-fname_megan_sample_iso = fdir_megan_sample + '/MEGAN-MACC_biogenic_2009_isoprene.nc'
-fname_megan_sample_mon = fdir_megan_sample + '/MEGAN-MACC_biogenic_2009_monoterpenes.nc'
+fname_megan_sample_iso = get_fname_megan_sample('iso', '2009')
+fname_megan_sample_mon = get_fname_megan_sample('mon', '2009')
+
 
 #
-# Generated MEGAN emission data file name
+# Generated MEGAN emission data file names for iso and mon
+# This will be created later.
 #
-
-# Folder
-fdir_megan_new = '/homeappl/home/putian/scripts/tm5-mp/data/tm5_input_modified/megan'
-
-# Modified files for iso and mon
-fname_megan_new_iso = {}
-fname_megan_new_iso['pi'] = fdir_megan_new + '/MEGAN-MACC_biogenic_pi_isoprene.nc'
-fname_megan_new_iso['mh1'] = fdir_megan_new + '/MEGAN-MACC_biogenic_mh1_isoprene.nc'
-fname_megan_new_iso['mh2'] = fdir_megan_new + '/MEGAN-MACC_biogenic_mh2_isoprene.nc'
-
-fname_megan_new_mon = {}
-fname_megan_new_mon['pi'] = fdir_megan_new + '/MEGAN-MACC_biogenic_pi_monoterpenes.nc'
-fname_megan_new_mon['mh1'] = fdir_megan_new + '/MEGAN-MACC_biogenic_mh1_monoterpenes.nc'
-fname_megan_new_mon['mh2'] = fdir_megan_new + '/MEGAN-MACC_biogenic_mh2_monoterpenes.nc'
-
-# Case list
-case_list = ['pi', 'mh1', 'mh2']
-
-# Year count in Lu2018 BVOC data
-nyear = 10
-nmon = 12; ndate = nmon
 
 
 #==============================================================================#
@@ -97,7 +65,7 @@ def create_megan_new_file_from_lu2018_bvoc_data_gxx(data_gxx_lu2018_bvoc, fname_
   # Copy global attributes from sample files
   netcdf.copy_global_attributes(fid_megan_sample, fid_megan_new)
   
-  # Copy dimensions except
+  # Copy dimensions
   for dname in fdims_megan_sample:
     netcdf.copy_dimension(fid_megan_sample, fid_megan_new, dname)
       
@@ -125,7 +93,6 @@ if __name__=='__main__':
   # Read data
   #
 
-  # Interpolated Lu2018 BVOC data (done in 'preprocess.py')
   data_gxx_lu2018_iso = {}
   data_gxx_lu2018_mon = {}
   fid_lu2018_iso = {}
@@ -137,6 +104,11 @@ if __name__=='__main__':
     data_gxx_lu2018_iso[c] = fid_lu2018_iso[c].variables['data_gxx'][:]
     data_gxx_lu2018_mon[c] = fid_lu2018_mon[c].variables['data_gxx'][:]
 
+    # Convert the unit: [mg m-2 mon-1] --> [kg m-2 s-1]
+    for im in range(nmon):
+      data_gxx_lu2018_iso[c][:, im, :, :] *= unit_conv(68.0e-3, month_day[im])
+      data_gxx_lu2018_mon[c][:, im, :, :] *= unit_conv(136.0e-3, month_day[im])
+
   #
   # Save the data
   #
@@ -147,13 +119,13 @@ if __name__=='__main__':
       # isoprene
       print('Isoprene')
       data_tmp = np.transpose( data_gxx_lu2018_iso[c][iy][:, :, :], (0, 2, 1) )
-      fname_megan_new = fdir_megan_new + '/MEGAN-MACC_biogenic_{0}_{1:4d}_isoprene.nc'.format(c, 1850+iy)
+      fname_megan_new = get_fname_megan_new(c, 'iso', '{0:4d}'.format(1850+iy))
       create_megan_new_file_from_lu2018_bvoc_data_gxx(data_tmp, fname_megan_sample_iso, fname_megan_new)
 
       # Monoterpenes
       print('Monoterpenes')
       data_tmp = np.transpose( data_gxx_lu2018_mon[c][iy][:, :, :], (0, 2, 1) )
-      fname_megan_new = fdir_megan_new + '/MEGAN-MACC_biogenic_{0}_{1:4d}_monoterpenes.nc'.format(c, 1850+iy)
+      fname_megan_new = get_fname_megan_new(c, 'mon', '{0:4d}'.format(1850+iy))
       create_megan_new_file_from_lu2018_bvoc_data_gxx(data_tmp, fname_megan_sample_mon, fname_megan_new)
 
     # Also generate a mean field data file
@@ -161,11 +133,12 @@ if __name__=='__main__':
     # isoprene
     print('Saving 10-year mean isoprene data ...')
     data_tmp = np.transpose( np.squeeze(np.mean(data_gxx_lu2018_iso[c], axis=0)), (0, 2, 1) )
-    fname_megan_new = fdir_megan_new + '/MEGAN-MACC_biogenic_{0}_1850_1859_mean_isoprene.nc'.format(c)
+    fname_megan_new = fdir_megan_new + '/{0}-MEGAN-MACC_biogenic_1850_1859_mean_isoprene.nc'.format(c)
+    fname_megan_new = get_fname_megan_new(c, 'iso', '1850_1859_mean')
     create_megan_new_file_from_lu2018_bvoc_data_gxx(data_tmp, fname_megan_sample_iso, fname_megan_new)
 
     # Monoterpenes
     print('Saving 10-year mean monoterpenes data ...')
     data_tmp = np.transpose( np.squeeze(np.mean(data_gxx_lu2018_mon[c], axis=0)), (0, 2, 1) )
-    fname_megan_new = fdir_megan_new + '/MEGAN-MACC_biogenic_{0}_1850_1859_mean_monoterpenes.nc'.format(c)
+    fname_megan_new = get_fname_megan_new(c, 'mon', '1850_1859_mean')
     create_megan_new_file_from_lu2018_bvoc_data_gxx(data_tmp, fname_megan_sample_mon, fname_megan_new)
