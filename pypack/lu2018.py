@@ -63,7 +63,7 @@ def read_bvoc_data_rawpd(fname):
   """
   rawpd = pd.read_csv(fname, sep='\s+', header=0)
   
-  # Set column names
+  # Set column names, er: emission rate
   rawpd.columns = ['lon', 'lat', 'year'] + ['er{:02d}'.format(i+1) for i in range(nmon)]
 
   return rawpd
@@ -222,7 +222,7 @@ def read_data_lrg(fname):
 
 class Lu2018():
   """
-  "Dataset for the data used in Lu2018
+  " Dataset for the data used in Lu2018
   """
 
   #========================================#
@@ -398,6 +398,49 @@ class Lu2018():
     return data_gxx
 
 
+  def calc_data_dommean_from_data_gxx(self):
+    pass
+
+
+  def save_data_gxx_to_netcdf(self, fname):
+    year = np.arange(1850, 1860)
+    mon  = np.arange(1, 13)
+    vt = np.arange(1, nvt+1)  # [1 - nvt], vegetation type
+
+    netcdf.save_multiple_data_to_netcdf( \
+      fname, \
+      ['year', 'mon', 'lon', 'lat', 'vt'], \
+      [year, mon, self.data_gxx['lon'], self.data_gxx['lat'], vt], \
+      ['lail', 'laih', 'cvl', 'cvh', 'tv'], \
+      [ \
+      ['year', 'mon', 'lon', 'lat'], \
+      ['year', 'mon', 'lon', 'lat'], \
+      ['year', 'mon', 'lon', 'lat'], \
+      ['year', 'mon', 'lon', 'lat'], \
+      ['vt', 'year', 'lon', 'lat'], \
+      ], \
+      [ \
+      self.data_gxx['lail'], \
+      self.data_gxx['laih'], \
+      self.data_gxx['cvl'], \
+      self.data_gxx['cvh'], \
+      self.data_gxx['tv'], \
+      ] \
+      )
+
+
+  def save_data_to_npz(self, fname):
+    # Save the data
+    np.savez(fname, \
+             lon_lrg = Lu2018Bvoc.lon_lrg, \
+             lat_lrg = Lu2018Bvoc.lat_lrg, \
+             lon_g11 = Lu2018Bvoc.lon_g11, \
+             lat_g11 = Lu2018Bvoc.lat_g11, \
+             data_lrg = self.data_lrg, \
+             data_gxx = self.emis_gxx, \
+            )
+
+
 class Lu2018Bvoc():
   """
   " Dataset for the BVOC data used in Lu2018
@@ -549,6 +592,8 @@ class Lu2018Bvoc():
              data_lrg = self.data_lrg, \
              data_gxx = self.emis_gxx, \
             )
+
+
 
 
 #===========================================================================#

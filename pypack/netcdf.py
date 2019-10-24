@@ -139,6 +139,7 @@ def copy_variable(nc_fid1, nc_fid2, var_name):
   dtype = var1.dtype
 
   # Create a new variable in nc_fid2
+  print(var_name, dtype, dims)
   var2 = nc_fid2.createVariable(var_name, dtype, dims)
 
   # Copy the attributes
@@ -195,6 +196,41 @@ def save_single_data_to_netcdf(fname, dname_list, dim_list, vname, var):
   # Create new variables
   var_ref = fid.createVariable(vname, np.dtype('float32'), tuple(dname_list))
   var_ref[:] = var[:]
+
+  # Close the file
+  fid.close()
+
+
+def save_multiple_data_to_netcdf(fname, dname_list, dim_list, vname_list, vdim_list, var_list):
+  """
+  " Simply save some variables to a nc file
+  "
+  " fname: file name
+  "
+  " The order of dimensions should be consistent, e.g.,
+  "   dname_list: ['time', 'lat', 'lon']
+  "   dim_list  : [time, lat, lon]
+  "   vname_list: ['data1', 'data2', ...]
+  "   vdim_list: [ ['time', 'lat', 'lon'], ['lon', 'lat'] ]
+  "   var_list  : [data1(time, lat, lon), data2(lat, lon), ...]
+  """
+
+  # Open a file to write
+  fid = Dataset(fname, 'w')
+
+  # Create dimensions
+  for dname, dim in zip(dname_list, dim_list):
+    ndim = len(dim)
+    fid.createDimension(dname, ndim)
+    dim_ref = fid.createVariable(dname, np.dtype('float32'), (dname,))
+    dim_ref[:] = dim[:]
+
+  # Create new variables
+  for vname, vdim, var in zip(vname_list, vdim_list, var_list):
+    var_ref = fid.createVariable(vname, np.dtype('float32'), tuple(vdim))
+    print('[Putian Debug] var_ref shape: ', var_ref.shape)
+    print('[Putian Debug] var shape: ', var.shape)
+    var_ref[:] = var[:]
 
   # Close the file
   fid.close()
