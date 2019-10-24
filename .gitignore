@@ -15,3 +15,9 @@ process_data/generate_tm5_input/megan/*.png
 *.npz
 *.hdf
 *.nc
+
+# Figures
+*.png
+*.jpg
+*.jpeg
+*.gif
