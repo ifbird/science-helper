@@ -21,3 +21,6 @@ process_data/generate_tm5_input/megan/*.png
 *.jpg
 *.jpeg
 *.gif
+
+# ".orig" files from Meld
+*.orig
