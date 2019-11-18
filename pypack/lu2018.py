@@ -7,7 +7,6 @@ import numpy as np
 import numpy.ma as ma
 from pyhdf.SD import *
 
-from mpl_toolkits.basemap import Basemap
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
@@ -438,6 +437,9 @@ class Lu2018():
              lat_g11 = Lu2018Bvoc.lat_g11, \
              data_lrg = self.data_lrg, \
              data_gxx = self.emis_gxx, \
+             )
+
+
 class Lu2018Bvoc():
   """
   " Dataset for the BVOC data used in Lu2018
