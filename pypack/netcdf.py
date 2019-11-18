@@ -236,8 +236,6 @@ def save_multiple_data_to_netcdf(fname, dname_list, dim_list, vname_list, vdim_l
   fid.close()
 
 
-<<<<<<< HEAD
-=======
 def save_multiple_data_to_netcdf(fname, dname_list, dim_list, vname_list, vdim_list, var_list):
   """
   " Simply save some variables to a nc file
@@ -273,7 +271,6 @@ def save_multiple_data_to_netcdf(fname, dname_list, dim_list, vname_list, vdim_l
   fid.close()
 
 
->>>>>>> cc7afb7e8ce1c6baa7ff7baa77989ff6dd7c6c41
 if __name__ == '__main__':
   # Get first command line argument as the input hdf4 file name
   ncFile = sys.argv[1]
