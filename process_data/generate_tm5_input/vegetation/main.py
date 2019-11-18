@@ -106,7 +106,8 @@ for c in case_list:
       if vname in ['tv08', 'tv12', 'tv14', 'tv15', 'tv20']:
         continue
 
-      # Copy variables
+      # Copy variables, here the time dimensions will change to 4 from 1,
+      # This should be fixed in the future
       netcdf.copy_variable(fid_sample_veg, fid_new_veg, vname)
 
       # Copy the values
