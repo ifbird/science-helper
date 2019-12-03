@@ -68,7 +68,8 @@ ndate = nmon
 month_day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
-def modify_onlinedust_from_veg(fname_raw, fname_new, cvl, cvh, potsrc_region, cult_new, soilph_threshold):
+def modify_onlinedust_from_veg(fname_raw, fname_new, \
+  cvl, cvh, potsrc_region, cult_new, soilph_threshold, case):
   """
   " Modify onlinedust file wrt to meteo veg data
   " potsrc_region: [south, north, west, east]
@@ -95,7 +96,8 @@ def modify_onlinedust_from_veg(fname_raw, fname_new, cvl, cvh, potsrc_region, cu
   #----- Modify potsrc -----#
   # Set all the potsrc in the region 20W-40E, 10N-30N to 0,
   # representing they are no longer potential dust sources but lakes in MH.
-  potsrc[np.ix_(regm_lat, regm_lon)] = 0.0  # select rows then columns
+  if case != 'pi':
+    potsrc[np.ix_(regm_lat, regm_lon)] = 0.0  # select rows then columns
   
   #----- Modify cult -----#
   # Set to 0 in MH

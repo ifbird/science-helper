@@ -160,4 +160,5 @@ if __name__ == '__main__':
 
     modify_onlinedust_from_veg(get_fname_sample_dust(), get_fname_new_dust(c, year_str), \
       cvl, cvh, \
-      potsrc_region, cult_new, soilph_threshold)
+      potsrc_region, cult_new, soilph_threshold, \
+      c)
