@@ -141,6 +141,7 @@ if __name__ == '__main__':
   year_str = '1850_1859_mean'
 
   for c in case_list:
+    print(c)
 
     #
     # cvl and cvh
@@ -148,17 +149,29 @@ if __name__ == '__main__':
     #
     fid_lu2018_veg_gxx = Dataset(get_fname_lu2018_veg_gxx(c), 'r')
 
-    # cvl
+    ##### cvl
+
+    # 1850 - 1859 mean
     cvl_annual_mean = np.mean(fid_lu2018_veg_gxx.variables['cvl'][:, :, :, :], axis = (0, 1))
-    print(cvl_annual_mean.shape)
+
+    # 1859
+    # cvl_annual_mean = np.mean(fid_lu2018_veg_gxx.variables['cvl'][-1, :, :, :], axis = 0)
+
     cvl = np.transpose(cvl_annual_mean)
 
-    # cvh
+    ##### cvh
+    # 1850 - 1859 mean
     cvh_annual_mean = np.mean(fid_lu2018_veg_gxx.variables['cvh'][:, :, :, :], axis = (0, 1))
-    print(cvh_annual_mean.shape)
+
+    # 1859
+    # cvh_annual_mean = np.mean(fid_lu2018_veg_gxx.variables['cvh'][-1, :, :, :], axis = 0)
+
     cvh = np.transpose(cvh_annual_mean)
 
     modify_onlinedust_from_veg(get_fname_sample_dust(), get_fname_new_dust(c, year_str), \
       cvl, cvh, \
       potsrc_region, cult_new, soilph_threshold, \
       c)
+
+  # Set potential lake grids to real lakes in MH for MH cases
+  # modify_lsm_from_paleolakes(get_fname_sample_lsm(), get_fname_new_lsm('mh'), get_fname_sample_dust(), potsrc_region)

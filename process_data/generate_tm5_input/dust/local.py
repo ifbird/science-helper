@@ -53,6 +53,17 @@ def get_fname_new_dust(c, y):
   return fdir_new_dust + '/{0}-{1}-onlinedust_4.nc'.format(c, y)
 
 
+fdir_sample_lsm = '/proj/atm/TM5_METEO/2009'
+def get_fname_sample_lsm():
+  return fdir_sample_lsm + '/ec-ei-an0tr6-sfc-glb100x100-0000-lsm.nc'
+
+
+fdir_new_lsm = '/homeappl/home/putian/scripts/tm5-mp/data/tm5_input_modified/meteo-lsm'
+def get_fname_new_lsm(c):
+  return fdir_new_lsm + '/{0}-ec-ei-an0tr6-sfc-glb100x100-0000-lsm.nc'.format(c)
+
+
+
 # Grid box area for 0.5x0.5
 # lon, lat, gridbox_area [m-2]
 # fname_gridarea_0p5x0p5 = '/proj/atm/TM5_EMISS/MACCity/gridbox_area.nc'
@@ -127,5 +138,46 @@ def modify_onlinedust_from_veg(fname_raw, fname_new, \
   fid.variables['potsrc'][:] = potsrc  # [nlat, nlon]
   fid.variables['cult'  ][:] = cult    # [nlat, nlon]
   fid.variables['soilph'][:] = soilph  # [nsoilph, nlat, nlon]
+  
+  fid.close()
+
+
+def modify_lsm_from_paleolakes(fname_raw, fname_new, fname_onlinedust_raw, potsrc_region):
+  """
+  " Modify lsm file wrt to paleo lakes, here we assume the preferential source region at present day in
+  " the Sahara region was lake area in Mid-Holocene
+  " Raw file: TM5_METEO/2009/ec-ei-an0tr6-sfc-glb100x100-0000-lsm.nc
+  " nlon: 360, nlat: 180
+  " lsm(lat, lon)
+  " potsrc: potential lake grid if potsrc > 0.5
+  " potsrc_region: [south, north, west, east]
+  """
+  # Copy raw file to a new one for further modifying
+  shutil.copyfile(fname_raw, fname_new)
+  
+  # Open the file with read and write permissions
+  # fid, fattr, fdim, fvar = pf.ncdump(fname_mhgsrd, verb=False)
+  fid = Dataset(fname_new, 'r+')
+  fid_dust = Dataset(fname_onlinedust_raw, 'r')
+  
+  # Read data
+  lon, lat = fid.variables['lon'][:], fid.variables['lat'][:]
+  nlon, nlat = lon.size, lat.size  # 360, 180
+  potsrc = np.copy(fid_dust.variables['potsrc'][:])  # [nlat, nlon]
+  lsm = np.copy(fid.variables['lsm'][:])  # [lat, lon], land area fraction
+  
+  # Region mask
+  regm_lat = (lat>=potsrc_region[0]) & (lat<=potsrc_region[1])
+  regm_lon = (lon>=potsrc_region[2]) & (lon<=potsrc_region[3])
+  
+  #----- Modify lsm -----#
+  # Set all the lsm in the region 20W-40E, 10N-30N to 0
+  # if potsrc is larger than 0.5, representing they were lakes in MH.
+  lsm_reg = np.copy( lsm[np.ix_(regm_lat, regm_lon)] )
+  lsm_reg[potsrc[np.ix_(regm_lat, regm_lon)] > 0.5] = 0.0
+  lsm[np.ix_(regm_lat, regm_lon)] = lsm_reg
+  
+  #----- Write back to file -----#
+  fid.variables['lsm'][:] = lsm  # [nlat, nlon]
   
   fid.close()
