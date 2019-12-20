@@ -1,0 +1,1959 @@
+FILE INFO
+-------------
+File:                    /proj/atm/TM5_METEO/2005/ec-ei-an0tr6-sfc-glb100x100-veg_20051231_00p06.hdf
+  file attributes:       10
+  datasets:              70
+
+File attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  ae                     8 FLOAT64   1 6371000.0
+  area_m2                9 FLOAT64 180 [107896235.58978683, 323655840.53061306, 539316856.7671216, 754813591.8646387, 970080403.4300241, 1185051719.1071258, 1399662056.5506864, 1613846043.373035, 1827538437.0568826, 2040674144.829104, 2253188243.4882755, 2465015999.181324, 2676092887.121975, 2886354611.2452593, 3095737123.7931952, 3304176644.824266, 3511609681.6408567, 3717973048.1308103, 3923203884.013497, 4127239673.9881263, 4330018266.776661, 4531477894.05521, 4731557189.269957, 4930195206.329058, 5127331438.168548, 5322905835.1824045, 5516858823.514665, 5709131323.206359, 5899664766.191188, 6088401114.137129, 6275282876.12398, 6460253126.156747, 6643255520.505312, 6824234314.8677435, 7003134381.350057, 7179901225.258847, 7354481001.70124, 7526820531.986008, 7696867319.82279, 7864569567.312654, 8029876190.726611, 8192736836.065727, 8353101894.399741, 8510922516.978311, 8666150630.111183, 8818738949.811157, 8968640996.198017, 9115811107.656292, 9260204454.74418, 9401777053.849741, 9540485780.58748, 9676288382.935785, 9809143494.106213, 9939010645.14524, 10065850277.260176, 10189623753.870705, 10310293372.376656, 10427822375.64341, 10542174963.197857, 10653316302.13417, 10761212537.723917, 10865830803.72847, 10967139232.410494, 11065106964.241333, 11159704157.30069, 11250901996.367298, 11338672701.69585, 11422989537.479248, 11503826819.992668, 11581159925.416508, 11654965297.337936, 11725220453.925583, 11791903994.77819, 11854995607.443237, 11914476073.604393, 11970327274.935371, 12022532198.619226, 12071074942.530514, 12115940720.079187, 12157115864.714758, 12194587834.089334, 12228345213.877981, 12258377721.255857, 12284676208.03028, 12307232663.427404, 12326040216.532393, 12341093138.382408, 12352386843.71161, 12359917892.347961, 12363683990.261091, 12363683990.261091, 12359917892.347961, 12352386843.71161, 12341093138.382408, 12326040216.532393, 12307232663.427404, 12284676208.03028, 12258377721.255857, 12228345213.877981, 12194587834.089334, 12157115864.714758, 12115940720.079187, 12071074942.530514, 12022532198.619226, 11970327274.935371, 11914476073.604393, 11854995607.443237, 11791903994.77819, 11725220453.925583, 11654965297.337936, 11581159925.416508, 11503826819.992668, 11422989537.479248, 11338672701.69585, 11250901996.367298, 11159704157.30069, 11065106964.241333, 10967139232.410494, 10865830803.72847, 10761212537.723917, 10653316302.13417, 10542174963.197857, 10427822375.64341, 10310293372.376656, 10189623753.870705, 10065850277.260176, 9939010645.14524, 9809143494.106213, 9676288382.935785, 9540485780.58748, 9401777053.849741, 9260204454.74418, 9115811107.656292, 8968640996.198017, 8818738949.811157, 8666150630.111183, 8510922516.978311, 8353101894.399741, 8192736836.065727, 8029876190.726611, 7864569567.312654, 7696867319.82279, 7526820531.986008, 7354481001.70124, 7179901225.258847, 7003134381.350057, 6824234314.8677435, 6643255520.505312, 6460253126.156747, 6275282876.12398, 6088401114.137129, 5899664766.191188, 5709131323.206359, 5516858823.514665, 5322905835.1824045, 5127331438.168548, 4930195206.329058, 4731557189.269957, 4531477894.05521, 4330018266.776661, 4127239673.9881263, 3923203884.013497, 3717973048.1308103, 3511609681.6408567, 3304176644.824266, 3095737123.7931952, 2886354611.2452593, 2676092887.121975, 2465015999.181324, 2253188243.4882755, 2040674144.829104, 1827538437.0568826, 1613846043.373035, 1399662056.5506864, 1185051719.1071258, 970080403.4300241, 754813591.8646387, 539316856.7671216, 323655840.53061306, 107896235.58978683]
+  fname                  0 CHAR8   112 /hpce/tmp/ms/nl/nl5/run.TM5-meteo100x100-ei-L60/tm5_meteo_out/ec-ei-an0tr6-sfc-glb100x100-veg_20051231_00p06.hdf
+  format                 1 CHAR8     7 tmm-1.0
+  grav                   7 FLOAT64   1 9.80665
+  gridtype               2 CHAR8     2 ll
+  latmax                 6 FLOAT64   1 89.5
+  latmin                 5 FLOAT64   1 -89.5
+  lonmax                 4 FLOAT64   1 179.5
+  lonmin                 3 FLOAT64   1 -179.5
+
+Datasets (idx:index num, na:n attributes, cv:coord var)
+
+  name                 idx type    na cv dimension(s)
+  -------------------- --- ------- -- -- ------------
+  tv01                   0 FLOAT32 15    LAT(180), LON(360)
+  LON                    1 FLOAT64  1 X  LON(360)
+  LAT                    2 FLOAT64  1 X  LAT(180)
+  tv02                   3 FLOAT32 15    LAT(180), LON(360)
+  tv03                   4 FLOAT32 15    LAT(180), LON(360)
+  tv04                   5 FLOAT32 15    LAT(180), LON(360)
+  tv05                   6 FLOAT32 15    LAT(180), LON(360)
+  tv06                   7 FLOAT32 15    LAT(180), LON(360)
+  tv07                   8 FLOAT32 15    LAT(180), LON(360)
+  tv09                   9 FLOAT32 15    LAT(180), LON(360)
+  tv10                  10 FLOAT32 15    LAT(180), LON(360)
+  tv11                  11 FLOAT32 15    LAT(180), LON(360)
+  tv13                  12 FLOAT32 15    LAT(180), LON(360)
+  tv16                  13 FLOAT32 15    LAT(180), LON(360)
+  tv17                  14 FLOAT32 15    LAT(180), LON(360)
+  tv18                  15 FLOAT32 15    LAT(180), LON(360)
+  tv19                  16 FLOAT32 15    LAT(180), LON(360)
+  cvl                   17 FLOAT32 15    LAT(180), LON(360)
+  cvh                   18 FLOAT32 15    LAT(180), LON(360)
+  tv01                  19 FLOAT32 15    LAT(180), LON(360)
+  tv02                  20 FLOAT32 15    LAT(180), LON(360)
+  tv03                  21 FLOAT32 15    LAT(180), LON(360)
+  tv04                  22 FLOAT32 15    LAT(180), LON(360)
+  tv05                  23 FLOAT32 15    LAT(180), LON(360)
+  tv06                  24 FLOAT32 15    LAT(180), LON(360)
+  tv07                  25 FLOAT32 15    LAT(180), LON(360)
+  tv09                  26 FLOAT32 15    LAT(180), LON(360)
+  tv10                  27 FLOAT32 15    LAT(180), LON(360)
+  tv11                  28 FLOAT32 15    LAT(180), LON(360)
+  tv13                  29 FLOAT32 15    LAT(180), LON(360)
+  tv16                  30 FLOAT32 15    LAT(180), LON(360)
+  tv17                  31 FLOAT32 15    LAT(180), LON(360)
+  tv18                  32 FLOAT32 15    LAT(180), LON(360)
+  tv19                  33 FLOAT32 15    LAT(180), LON(360)
+  cvl                   34 FLOAT32 15    LAT(180), LON(360)
+  cvh                   35 FLOAT32 15    LAT(180), LON(360)
+  tv01                  36 FLOAT32 15    LAT(180), LON(360)
+  tv02                  37 FLOAT32 15    LAT(180), LON(360)
+  tv03                  38 FLOAT32 15    LAT(180), LON(360)
+  tv04                  39 FLOAT32 15    LAT(180), LON(360)
+  tv05                  40 FLOAT32 15    LAT(180), LON(360)
+  tv06                  41 FLOAT32 15    LAT(180), LON(360)
+  tv07                  42 FLOAT32 15    LAT(180), LON(360)
+  tv09                  43 FLOAT32 15    LAT(180), LON(360)
+  tv10                  44 FLOAT32 15    LAT(180), LON(360)
+  tv11                  45 FLOAT32 15    LAT(180), LON(360)
+  tv13                  46 FLOAT32 15    LAT(180), LON(360)
+  tv16                  47 FLOAT32 15    LAT(180), LON(360)
+  tv17                  48 FLOAT32 15    LAT(180), LON(360)
+  tv18                  49 FLOAT32 15    LAT(180), LON(360)
+  tv19                  50 FLOAT32 15    LAT(180), LON(360)
+  cvl                   51 FLOAT32 15    LAT(180), LON(360)
+  cvh                   52 FLOAT32 15    LAT(180), LON(360)
+  tv01                  53 FLOAT32 15    LAT(180), LON(360)
+  tv02                  54 FLOAT32 15    LAT(180), LON(360)
+  tv03                  55 FLOAT32 15    LAT(180), LON(360)
+  tv04                  56 FLOAT32 15    LAT(180), LON(360)
+  tv05                  57 FLOAT32 15    LAT(180), LON(360)
+  tv06                  58 FLOAT32 15    LAT(180), LON(360)
+  tv07                  59 FLOAT32 15    LAT(180), LON(360)
+  tv09                  60 FLOAT32 15    LAT(180), LON(360)
+  tv10                  61 FLOAT32 15    LAT(180), LON(360)
+  tv11                  62 FLOAT32 15    LAT(180), LON(360)
+  tv13                  63 FLOAT32 15    LAT(180), LON(360)
+  tv16                  64 FLOAT32 15    LAT(180), LON(360)
+  tv17                  65 FLOAT32 15    LAT(180), LON(360)
+  tv18                  66 FLOAT32 15    LAT(180), LON(360)
+  tv19                  67 FLOAT32 15    LAT(180), LON(360)
+  cvl                   68 FLOAT32 15    LAT(180), LON(360)
+  cvh                   69 FLOAT32 15    LAT(180), LON(360)
+
+DATASET INFO
+-------------
+
+tv01 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv01 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+LON attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  unit                   0 CHAR8     3 deg
+
+LON dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LON                    0   360     FLOAT64    1
+
+LAT attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  unit                   0 CHAR8     3 deg
+
+LAT dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+
+tv02 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv02 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv03 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv03 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv04 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv04 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv05 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv05 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv06 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv06 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv07 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv07 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv09 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv09 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv10 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv10 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv11 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv11 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv13 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv13 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv16 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv16 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv17 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv17 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv18 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv18 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv19 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv19 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+cvl attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==cvl;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     3 0-1
+
+cvl dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+cvh attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==cvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,00,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 0, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 0, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 0, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     3 0-1
+
+cvh dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv01 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv01 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv02 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv02 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv03 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv03 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv04 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv04 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv05 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv05 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv06 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv06 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv07 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv07 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv09 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv09 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv10 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv10 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv11 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv11 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv13 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv13 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv16 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv16 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv17 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv17 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv18 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv18 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv19 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv19 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+cvl attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==cvl;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     3 0-1
+
+cvl dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+cvh attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==cvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,06,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 6, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 6, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 6, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     3 0-1
+
+cvh dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv01 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv01 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv02 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv02 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv03 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv03 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv04 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv04 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv05 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv05 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv06 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv06 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv07 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv07 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv09 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv09 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv10 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv10 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv11 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv11 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv13 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv13 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv16 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv16 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv17 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv17 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv18 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv18 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv19 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv19 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+cvl attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==cvl;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     3 0-1
+
+cvl dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+cvh attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==cvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,12,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 12, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 12, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 12, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     3 0-1
+
+cvh dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv01 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv01 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv02 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv02 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv03 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv03 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv04 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv04 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv05 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv05 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv06 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv06 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv07 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv07 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv09 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv09 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv10 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv10 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv11 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv11 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv13 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv13 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv16 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv16 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv17 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv17 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv18 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv18 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+tv19 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==tvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     1 %
+
+tv19 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+cvl attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==cvl;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     3 0-1
+
+cvl dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+
+cvh attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                  7 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype               8 CHAR8     2 ll
+  history                0 CHAR8   154 name==cvh;;unit==unknown;;model==ecmwf;;class==ei;;type==an;;tref==2005,12,30,18,00;;trange==001,000,000,000;;nlev==001;;gg==0128;;oper==hcomb,area-aver;;
+  idate                  2 INT32     6 [2005, 12, 31, 18, 0, 0]
+  lat_first             12 FLOAT64   1 -89.5
+  lat_inc               13 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              9 FLOAT64   1 -179.5
+  lon_inc               10 FLOAT64   1 1.0
+  lon_n                 11 INT32     1 360
+  time1                  5 INT32     6 [2005, 12, 31, 18, 0, 0]
+  time2                  6 INT32     6 [2005, 12, 31, 18, 0, 0]
+  tref                   4 INT32     6 [2005, 12, 31, 0, 0, 0]
+  unit                   1 CHAR8     3 0-1
+
+cvh dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180     FLOAT64    1
+  LON                    1   360     FLOAT64    1
+

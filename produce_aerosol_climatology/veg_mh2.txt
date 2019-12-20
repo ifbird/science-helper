@@ -1,0 +1,699 @@
+FILE INFO
+-------------
+File:                    /homeappl/home/putian/scripts/tm5-mp/data/tm5_input_modified/meteo-veg-mh2/ec-ei-an0tr6-sfc-glb100x100-veg_200512.hdf
+  file attributes:       10
+  datasets:              24
+
+File attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  ae                     0 FLOAT64   1 6371000.0
+  area_m2                1 FLOAT64 180 [107896235.58978683, 323655840.53061306, 539316856.7671216, 754813591.8646387, 970080403.4300241, 1185051719.1071258, 1399662056.5506864, 1613846043.373035, 1827538437.0568826, 2040674144.829104, 2253188243.4882755, 2465015999.181324, 2676092887.121975, 2886354611.2452593, 3095737123.7931952, 3304176644.824266, 3511609681.6408567, 3717973048.1308103, 3923203884.013497, 4127239673.9881263, 4330018266.776661, 4531477894.05521, 4731557189.269957, 4930195206.329058, 5127331438.168548, 5322905835.1824045, 5516858823.514665, 5709131323.206359, 5899664766.191188, 6088401114.137129, 6275282876.12398, 6460253126.156747, 6643255520.505312, 6824234314.8677435, 7003134381.350057, 7179901225.258847, 7354481001.70124, 7526820531.986008, 7696867319.82279, 7864569567.312654, 8029876190.726611, 8192736836.065727, 8353101894.399741, 8510922516.978311, 8666150630.111183, 8818738949.811157, 8968640996.198017, 9115811107.656292, 9260204454.74418, 9401777053.849741, 9540485780.58748, 9676288382.935785, 9809143494.106213, 9939010645.14524, 10065850277.260176, 10189623753.870705, 10310293372.376656, 10427822375.64341, 10542174963.197857, 10653316302.13417, 10761212537.723917, 10865830803.72847, 10967139232.410494, 11065106964.241333, 11159704157.30069, 11250901996.367298, 11338672701.69585, 11422989537.479248, 11503826819.992668, 11581159925.416508, 11654965297.337936, 11725220453.925583, 11791903994.77819, 11854995607.443237, 11914476073.604393, 11970327274.935371, 12022532198.619226, 12071074942.530514, 12115940720.079187, 12157115864.714758, 12194587834.089334, 12228345213.877981, 12258377721.255857, 12284676208.03028, 12307232663.427404, 12326040216.532393, 12341093138.382408, 12352386843.71161, 12359917892.347961, 12363683990.261091, 12363683990.261091, 12359917892.347961, 12352386843.71161, 12341093138.382408, 12326040216.532393, 12307232663.427404, 12284676208.03028, 12258377721.255857, 12228345213.877981, 12194587834.089334, 12157115864.714758, 12115940720.079187, 12071074942.530514, 12022532198.619226, 11970327274.935371, 11914476073.604393, 11854995607.443237, 11791903994.77819, 11725220453.925583, 11654965297.337936, 11581159925.416508, 11503826819.992668, 11422989537.479248, 11338672701.69585, 11250901996.367298, 11159704157.30069, 11065106964.241333, 10967139232.410494, 10865830803.72847, 10761212537.723917, 10653316302.13417, 10542174963.197857, 10427822375.64341, 10310293372.376656, 10189623753.870705, 10065850277.260176, 9939010645.14524, 9809143494.106213, 9676288382.935785, 9540485780.58748, 9401777053.849741, 9260204454.74418, 9115811107.656292, 8968640996.198017, 8818738949.811157, 8666150630.111183, 8510922516.978311, 8353101894.399741, 8192736836.065727, 8029876190.726611, 7864569567.312654, 7696867319.82279, 7526820531.986008, 7354481001.70124, 7179901225.258847, 7003134381.350057, 6824234314.8677435, 6643255520.505312, 6460253126.156747, 6275282876.12398, 6088401114.137129, 5899664766.191188, 5709131323.206359, 5516858823.514665, 5322905835.1824045, 5127331438.168548, 4930195206.329058, 4731557189.269957, 4531477894.05521, 4330018266.776661, 4127239673.9881263, 3923203884.013497, 3717973048.1308103, 3511609681.6408567, 3304176644.824266, 3095737123.7931952, 2886354611.2452593, 2676092887.121975, 2465015999.181324, 2253188243.4882755, 2040674144.829104, 1827538437.0568826, 1613846043.373035, 1399662056.5506864, 1185051719.1071258, 970080403.4300241, 754813591.8646387, 539316856.7671216, 323655840.53061306, 107896235.58978683]
+  fname                  2 CHAR8   117 /homeappl/home/putian/scripts/tm5-mp/data/tm5_input_modified/meteo-veg-mh2/ec-ei-an0tr6-sfc-glb100x100-veg_200512.hdf
+  format                 3 CHAR8     7 tmm-1.0
+  grav                   4 FLOAT64   1 9.80665
+  gridtype               5 CHAR8     2 ll
+  latmax                 6 FLOAT64   1 89.5
+  latmin                 7 FLOAT64   1 -89.5
+  lonmax                 8 FLOAT64   1 179.5
+  lonmin                 9 FLOAT64   1 -179.5
+
+Datasets (idx:index num, na:n attributes, cv:coord var)
+
+  name                 idx type    na cv dimension(s)
+  -------------------- --- ------- -- -- ------------
+  LAT                    0 FLOAT64 15    LAT(180)
+  LON                    1 FLOAT64 15    LON(360)
+  tv01                   2 FLOAT64 15    LAT(180), LON(360)
+  tv02                   3 FLOAT64 15    LAT(180), LON(360)
+  tv03                   4 FLOAT64 15    LAT(180), LON(360)
+  tv04                   5 FLOAT64 15    LAT(180), LON(360)
+  tv05                   6 FLOAT64 15    LAT(180), LON(360)
+  tv06                   7 FLOAT64 15    LAT(180), LON(360)
+  tv07                   8 FLOAT64 15    LAT(180), LON(360)
+  tv08                   9 FLOAT64 15    LAT(180), LON(360)
+  tv09                  10 FLOAT64 15    LAT(180), LON(360)
+  tv10                  11 FLOAT64 15    LAT(180), LON(360)
+  tv11                  12 FLOAT64 15    LAT(180), LON(360)
+  tv12                  13 FLOAT64 15    LAT(180), LON(360)
+  tv13                  14 FLOAT64 15    LAT(180), LON(360)
+  tv14                  15 FLOAT64 15    LAT(180), LON(360)
+  tv15                  16 FLOAT64 15    LAT(180), LON(360)
+  tv16                  17 FLOAT64 15    LAT(180), LON(360)
+  tv17                  18 FLOAT64 15    LAT(180), LON(360)
+  tv18                  19 FLOAT64 15    LAT(180), LON(360)
+  tv19                  20 FLOAT64 15    LAT(180), LON(360)
+  tv20                  21 FLOAT64 15    LAT(180), LON(360)
+  cvh                   22 FLOAT64 15    LAT(180), LON(360)
+  cvl                   23 FLOAT64 15    LAT(180), LON(360)
+
+DATASET INFO
+-------------
+
+LAT attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 m
+
+LAT dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+
+LON attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 m
+
+LON dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LON                    0   360                0
+
+tv01 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv01 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv02 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv02 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv03 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv03 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv04 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv04 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv05 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv05 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv06 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv06 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv07 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv07 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv08 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv08 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv09 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv09 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv10 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv10 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv11 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv11 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv12 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv12 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv13 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv13 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv14 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv14 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv15 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv15 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv16 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv16 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv17 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv17 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv18 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv18 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv19 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv19 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+tv20 attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     1 %
+
+tv20 dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+cvh attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     3 0-1
+
+cvh dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+
+cvl attributes
+
+  name                 idx type    len value
+  -------------------- --- ------- --- -----
+  dthrs                  3 INT32     1 0
+  dtime                 11 INT32     6 [0, 0, 0, 0, 0, 0]
+  gridtype              10 CHAR8     2 ll
+  history               13 CHAR8   144 name==srols;;unit==m;;file==/c1a/tmp/ms/nl/nm6/runTM5-meteo100x100-ei-L60/tm5_meteo_in/OLSSON-SR_OLSSON_360_180_02.d;;horizontal_interpolation;;
+  idate                  6 INT32     6 [2005, 12, 1, 0, 0, 0]
+  lat_first              9 FLOAT64   1 -89.5
+  lat_inc                1 FLOAT64   1 1.0
+  lat_n                 14 INT32     1 180
+  lon_first              5 FLOAT64   1 -179.5
+  lon_inc                8 FLOAT64   1 1.0
+  lon_n                  4 INT32     1 360
+  time1                  0 INT32     6 [2005, 12, 1, 0, 0, 0]
+  time2                  7 INT32     5 [2006, 1, 0, 0, 0]
+  tref                   2 INT32     6 [2005, 12, 1, 0, 0, 0]
+  unit                  12 CHAR8     3 0-1
+
+cvl dimensions
+
+  name                 idx len   unl type    natt
+  -------------------- --- ----- --- ------- ----
+  LAT                    0   180                0
+  LON                    1   360                0
+

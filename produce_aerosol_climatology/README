@@ -1,0 +1,9 @@
+1. Modify parameters according to the comments in 'cmor_ifs_concentrations.pro'. Then run the code:
+$ idl -e cmor_ifs_concentrations
+
+The same for optical properties:
+$ idl -e cmor_ifs_optical_properties
+
+This will generate a data file for the aerosol climatology. Every month is averaged from all the years.
+
+2. The files 'get_grid.pro', 'get_tm5_hdf.pro', 'rotate_2d.pro' and 'rotate_3d.pro' are called.
