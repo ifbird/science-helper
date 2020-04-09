@@ -30,10 +30,10 @@ def plot_cartopy_basic_map(map_proj):
   # Add map features
   # ax.add_feature(cfeature.LAND)
   # ax.add_feature(cfeature.OCEAN)
-  # ax.add_feature(cfeature.LAKES)
+  # ax.add_feature(cfeature.LAKES, alpha=0.5)
   # ax.add_feature(cfeature.RIVERS)
   # ax.add_feature(cfeature.BORDERS)  # country borders
-  ax.add_feature(cfeature.COASTLINE)
+  ax.add_feature(cfeature.COASTLINE, linestyle=':')
 
   # Add grid lines
   ax.gridlines()
@@ -56,6 +56,7 @@ def plot_cartopy_basic_map(map_proj):
   ax.plot([p1[0], p2[0]], [p1[1], p2[1]], 'b', transform=ccrs.Geodetic())  # along the big circle
 
   fg.savefig('cartopy_basic_map.png')
+  plt.close()
 
 
 def plot_cartopy_map_boundary():
@@ -83,15 +84,55 @@ def plot_cartopy_map_boundary():
   # permanently circular.
 
   theta = np.linspace(0, 2*np.pi, 100)
-  center, radius = [0.5, 0.5], 0.5
-  verts = np.vstack([np.sin(2*theta), np.cos(theta)]).T
+  center, radius = [0.5, 0.5], 1.5  # the unit is normalized for this subplot
+  verts = np.vstack([np.sin(theta), np.cos(theta)]).T
   circle = mpath.Path(verts * radius + center)
 
+  # Set the plot boudary to a circle
   ax2.set_boundary(circle, transform=ax2.transAxes)
 
   fg.savefig('cartopy_map_boundary.png')
+  plt.close()
+
+
+def plot_cartopy_web_map_service():
+  fig = plt.figure(figsize=(10, 5))
+  ax = fig.add_subplot(1, 1, 1, projection=ccrs.InterruptedGoodeHomolosine())
+  ax.coastlines()
+
+  ax.add_wms(wms='http://vmap0.tiles.osgeo.org/wms/vmap0',
+  layers=['basic'])
+
+  plt.show()
+
+
+def plot_layout():
+  fg = plt.figure(figsize=(10,10))
+  ax1 = fg.add_axes([0, 0, 0.5, 1])
+  ax2 = fg.add_axes([0.5, 0, 0.5, 1])
+  print(dir(ax1.xaxis))
+  print(ax1.xaxis.label_position)
+  print(ax1.xaxis.get_label_position())
+  print(ax1.xaxis.get_ticks_position())
+  # plt.show()
+
+
+def plot_colorbar_position():
+  fig, axs = plt.subplots(3, 3, constrained_layout=True)
+  for ax in axs.flat:
+    pcm = ax.pcolormesh(np.random.random((20, 20)))
+
+    fig.colorbar(pcm, ax=axs[0, :2], shrink=0.6, location='bottom')
+    fig.colorbar(pcm, ax=[axs[0, 2]], location='bottom')
+    fig.colorbar(pcm, ax=axs[1:, :], location='right', shrink=0.6)
+    fig.colorbar(pcm, ax=[axs[2, 1]], location='left')
+
+  plt.show()
 
 
 if __name__ == '__main__':
-  plot_cartopy_basic_map(ccrs.Robinson())
-  plot_cartopy_map_boundary()
+  # plot_cartopy_basic_map(ccrs.Robinson())
+  # plot_cartopy_map_boundary()
+  # plot_cartopy_web_map_service()
+  # plot_layout()
+  plot_colorbar_position()
