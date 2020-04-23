@@ -7,10 +7,13 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.path as mpath
+import matplotlib.ticker as mticker
 
 # Cartopy for the global map drawing
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+
 
 
 def plot_cartopy_basic_map(map_proj):
@@ -92,6 +95,30 @@ def plot_cartopy_map_boundary():
   fg.savefig('cartopy_map_boundary.png')
 
 
+def plot_grid_lines():
+  fg = plt.figure(figsize=[10, 10])
+
+  ax = plt.axes(projection=ccrs.Mercator())
+  ax.coastlines()
+
+  gl = ax.gridlines(crs=ccrs.PlateCarree(), \
+    draw_labels=True, linewidth=2, color='gray', alpha=0.5, linestyle='--')
+  gl.xlabels_top = False
+  gl.xlabels_bottom = True 
+  gl.ylabels_left = False
+  gl.ylabels_right = True
+  gl.xlines = False  # longitude lines
+  gl.ylines = True   # latitude lines
+  gl.xlocator = mticker.FixedLocator([-180, -45, 0, 45, 180])
+  gl.xformatter = LONGITUDE_FORMATTER
+  gl.yformatter = LATITUDE_FORMATTER
+  gl.xlabel_style = {'size': 15, 'color': 'gray'}
+  gl.xlabel_style = {'color': 'red', 'weight': 'bold'}
+
+  fg.savefig('cartopy_grid_lines.png')
+
+
 if __name__ == '__main__':
-  plot_cartopy_basic_map(ccrs.Robinson())
-  plot_cartopy_map_boundary()
+  # plot_cartopy_basic_map(ccrs.Robinson())
+  # plot_cartopy_map_boundary()
+  plot_grid_lines()
