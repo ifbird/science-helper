@@ -27,6 +27,10 @@ echo "\$ pwd"
 pwd
 echo
 
+# cut the $PATH to multiple lines by ':'
+# tr: translate character to new one
+# echo $PATH | tr ':' '\n'
+
 # ls: list files and folders
 # cd -: cd to previous folder
 
