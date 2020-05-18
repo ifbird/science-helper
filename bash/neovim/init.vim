@@ -21,6 +21,11 @@ let g:is_mac = has('macunix')
 
 " ----- vim-plug -----------------------------------------------------
 "
+" Install vim-plug for Neovim:
+" Put plug.vim in ~/.local/share/nvim/site/autoload
+" $ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+"	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 " Install plugins: :PlugInstall
 " Update plugins : :PlugUpdate
 " Remove plugins : :PlugClean (First, comment the plugin install command in
