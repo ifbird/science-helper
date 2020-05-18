@@ -1,0 +1,131 @@
+" set tab environment
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+autocmd FileType make setlocal noexpandtab " turn off expandtab for editing makefiles
+" autocmd FileType python setlocal tabstop=2
+
+" au BufRead,BufNewFile *.py set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
+
+
+" display the line number
+set nu
+
+" display the list characters
+set nolist
+" set list
+" set listchars=eol:$,tab:>-
+
+" Show line break
+set showbreak=...
+
+" always show the tab line
+set showtabline=2
+
+" set the color scheme
+" let g:solarized_termcolors=16
+" colorscheme molokai
+" highlight comment cterm=bold
+" let g:molokai_original = 1
+" let g:rehash256 = 1
+" set t_Co=256
+" set background=dark
+" colorscheme solarized
+" colorscheme desert
+
+" set the autoindent
+set autoindent
+
+" display the line number and column number in status bar
+set ruler
+
+" set the paste mode
+set pastetoggle=<F10>
+
+" set syntax on
+let fortran_free_source=1
+let fortran_do_enddo=1
+syntax on
+" filetype indent plugin on
+
+"make vim save and load the folding of the document each time it loads"
+"also places the cursor in the last place that it was left."
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+
+" Set up searching so
+" that it jumps to matches
+" as the word is being
+" entered and is case-insensitive
+set incsearch
+set ignorecase
+set smartcase
+
+" Search visullay selected part by typing '//'
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
+
+" Set the terminal to be able to use gui color schemes
+" Install CSApprox following this link:
+" 	https://www.vim.org/scripts/script.php?script_id=2390
+if version >= 700 && &term != 'cygwin' && !has('gui_running')
+  " In the color terminal, try to use CSApprox.vim plugin or
+  " guicolorscheme.vim plugin if possible in order to have consistent
+  " colors on different terminals.
+  "
+  " Uncomment one of the following lines to force 256 or 88 colors if
+  " your terminal supports it. Or comment both of them if your terminal
+  " supports neither 256 nor 88 colors. Unfortunately, querying the
+  " number of supported colors does not work on all terminals.
+  set t_Co=256
+  "set t_Co=88
+  if &t_Co == 256 || &t_Co == 88
+    " Check whether to use CSApprox.vim plugin or guicolorscheme.vim plugin.
+    if has('gui') &&
+      \ (filereadable(expand("$HOME/.vim/plugin/CSApprox.vim")) ||
+      \  filereadable(expand("$HOME/vimfiles/plugin/CSApprox.vim")))
+      let s:use_CSApprox = 1
+    elseif filereadable(expand("$HOME/.vim/plugin/guicolorscheme.vim")) ||
+      \    filereadable(expand("$HOME/vimfiles/plugin/guicolorscheme.vim"))
+      let s:use_guicolorscheme = 1
+    endif
+  endif
+endif
+if exists('s:use_CSApprox')
+  " Can use the CSApprox.vim plugin.
+  let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
+  colorscheme desert
+elseif exists('s:use_guicolorscheme')
+  " Can use the guicolorscheme plugin. It needs to be loaded before
+  " running GuiColorScheme (hence the :runtime! command).
+  runtime! plugin/guicolorscheme.vim
+  GuiColorScheme desert
+else
+  colorscheme desert
+endif
+
+" Use these commands to set the background transparent again after setting the colorschemes
+" Put them after syntax on
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight LineNr ctermbg=none
+
+" Show partial command in status line
+set showcmd
+
+" ----- Set for vim-latex --------------------------
+
+" OPTIONAL: This enables automatic indentation as you type.
+filetype indent on
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
+" Uncomment if you do not want to use vim-latex
+" let b:suppress_latex_suite = 1
+
+" print a message when this file is loaded
+echo "Loading ~/.vimrc done."
