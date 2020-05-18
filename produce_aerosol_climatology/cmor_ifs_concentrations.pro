@@ -31,7 +31,8 @@ compile_opt idl2
 ;outputdir = '/nobackup_1/users/noije/TM5/EC-Earth3.2/v5.0-salter-enh3/'
 ;outputdir = '/nobackup_1/users/noije/TM5/EC-Earth3.2/v5.0-salter-enh5/'
 ;outputdir = '/nobackup_1/users/noije/TM5/EC-Earth3.2/v5.0-salter-enh7/'
-outputdir = '/wrk/putian/DONOTREMOVE/tm5mp/ifs_aerosol_climatology/mhgsrd_200501/'
+; outputdir = '/wrk/putian/DONOTREMOVE/tm5mp/ifs_aerosol_climatology/mhgsrd_200501/'
+outputdir = '/projappl/project_2001025/tm5mp/data/aerosol_climatology/'
 
 
 nbnds=2
@@ -66,7 +67,7 @@ endfor
 
 ;read hybrid coordinates from 34/60 griddef file
 ; ncdf_read, grid, file='/nobackup/users/noije/TM5/TM5_griddef_glb300x200_L34_L60.nc',/all
-ncdf_read, grid, file='/wrk/putian/tm5mp-run/mhgsrd/rundir/output_20190426/TM5_tropomi_griddef.nc',/all
+ncdf_read, grid, file='/projappl/project_2001025/tm5mp/data/tm5_input_modified/TM5_tropomi_griddef.nc',/all
 
 lev=dblarr(nlev_tm5)
 a=dblarr(nlev_tm5)
@@ -304,26 +305,20 @@ Rgas=8.3144/(28.964e-3)
 
 nyear=1
 ;nyear=1
-year_start=2005
+year_start=2009
 year_end=year_start+nyear-1
 for year = year_start,year_end do begin
 
   print,'year: ',year
   cyear = string(year,  FORMAT='(I4.4)')
-  ;inputdir = '/nobackup/users/noije/TM5/ap3-insitu/monthly/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-v2/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-vcmip6/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pd-vcmip6/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-v4-salter15/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-v5-salter15-enh3/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-v5-salter15-enh5/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-v5-salter15-enh7/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-v5-salter-enh3/'
-  ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-v5-salter-enh5/'
   ;inputdir = '/nobackup/users/noije/TM5/ecearth-pi-v5-salter-enh7/'
   ; inputdir = '/wrk/putian/tm5mp-run/mhgsrd/rundir/output_20190426/'  ; wrong onlinedust settings
-  inputdir = '/wrk/putian/tm5mp-run/mhgsrd/rundir/output_20190503-1month_fail_end/'
+  ; inputdir = '/wrk/putian/tm5mp-run/mhgsrd/rundir/output_20190503-1month_fail_end/'
+  inputdir = '/scratch/project_2001025/tm5mp/runs/pi_01_orig/rundir/output-1y/'
+  ; inputdir = '/scratch/project_2001025/tm5mp/runs/pi_01_ctrl/rundir/output-1y/'
+  ; inputdir = '/scratch/project_2001025/tm5mp/runs/pi_01_zeroanthro/rundir/output-1y/'
+  ; inputdir = '/scratch/project_2001025/tm5mp/runs/mh1_01/rundir/output-1y/'
+  ; inputdir = '/scratch/project_2001025/tm5mp/runs/mh2_01/rundir/output-1y/'
   
   ;simulation_id='AP3-PI'
   ;simulation_id='PI-V2'
@@ -390,9 +385,9 @@ for year = year_start,year_end do begin
     cnext_month = string(next_month,  FORMAT='(I2.2)')
 
     ; [Putian] only use one-month data
-    cnext_year = '2005'
-    cmonth = '01'
-    cnext_month = '02'
+    ; cnext_year = '2009'
+    ; cmonth = '01'
+    ; cnext_month = '02'
 
     af=inputdir+'aerocom3'+'_'+modelname+'_'+simulation_id+'_global_'+cyear+cmonth+'_monthly.nc'
     ;bf=inputdir+'budget_'+cyear+cmonth+'0100_'+cnext_year+cnext_month+'0100_global.hdf'
@@ -708,6 +703,7 @@ for imonth=0,nmonth-1 do begin
   for ilat=0,nlat-1 do begin
     
       for ilev=0,nlev_tm5-1 do begin
+        ; print, ap_bnds[0,ilev], b_bnds[0,ilev], surfpres[ilon,ilat,imonth]
         phalf_in[ilev]=ap_bnds[0,ilev] + b_bnds[0,ilev]*surfpres[ilon,ilat,imonth]
         ;phalf_in[ilev]=ap_bnds[0,ilev] + b_bnds[0,ilev]*101325.
         ;print,ilev+1,phalf_in[ilev]
@@ -730,7 +726,9 @@ for imonth=0,nmonth-1 do begin
           endif
         endfor
 
+        ; print, 'nlev_ece: ', nlev_ece
         for klev=nlev_ece-1,0,-1 do begin
+          ; print, klev, ilev, phalf_out[klev], phalf_in[ilev+1]
           if phalf_out[klev] gt phalf_in[ilev+1] then begin
             kmax=klev
             break
@@ -871,7 +869,11 @@ if (iwrite eq 1) then begin
  ;outputfile=outputdir+'tm5_clim_pi_aerosol_conc_v5.0_157'+levels_id1+'.nc'
  ;outputfile=outputdir+'tm5_clim_pi_aerosol_conc_v5.0_203'+levels_id1+'.nc'
  ;outputfile=outputdir+'tm5_clim_pi_aerosol_conc_v5.0_205'+levels_id1+'.nc'
- outputfile=outputdir+'tm5_clim_mh2_aerosol_conc_'+levels_id1+'.nc'
+ outputfile=outputdir+'tm5_clim_pio_aerosol_conc_'+levels_id1+'.nc'
+ ; outputfile=outputdir+'tm5_clim_pic_aerosol_conc_'+levels_id1+'.nc'
+ ; outputfile=outputdir+'tm5_clim_piz_aerosol_conc_'+levels_id1+'.nc'
+ ; outputfile=outputdir+'tm5_clim_mh1_aerosol_conc_'+levels_id1+'.nc'
+ ; outputfile=outputdir+'tm5_clim_mh2_aerosol_conc_'+levels_id1+'.nc'
  print, outputfile
  cdfid=ncdf_create(outputfile,/clobber)
  ;cdfid=ncdf_open(outputfile,/write)
