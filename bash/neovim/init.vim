@@ -115,9 +115,9 @@ Plug 'davidhalter/jedi-vim'
 " NERDTreeToggle: toggle nerdtree
 " o: open file in a new buffer or open/close dir
 " t: open file in a new tab
-" i: open file in a new horizontal split
-" s: open file in a new vertical split
-" p: go to parent dir
+" i: open file in a new horizontal split, -
+" s: open file in a new vertical split, |
+" u: go to parent dir
 " r: refresh current dir
 " q: close nerdtree window
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -125,11 +125,26 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " ----- vim-rainbow
 Plug 'luochen1990/rainbow'
 
+" ----- rainbow_parentheses
+Plug 'junegunn/rainbow_parentheses.vim'
+
 " ----- vim-highlightedyank: highlight the yanked text
 Plug 'machakann/vim-highlightedyank'
 
 " ----- SimplyFold: fold the code
 Plug 'tmhedberg/SimpylFold', { 'on': [] }
+
+" ----- vim-signify: Show git change (change, delete, add) signs in vim sign column
+Plug 'mhinz/vim-signify'
+" Another similar plugin
+" Plug 'airblade/vim-gitgutter'
+
+" ----- vim-fugitive: Git command inside vim
+Plug 'tpope/vim-fugitive', {'on': ['Gstatus']}
+
+" ----- gv.vim: Git commit browser
+" Turn on fugitive by :Gstatus, then you can use :GV
+Plug 'junegunn/gv.vim', { 'on': 'GV' }
 
 " ----- A list of colorscheme plugin you may want to try. Find what suits you.
 Plug 'morhetz/gruvbox'  " gruvbox
@@ -239,16 +254,27 @@ let NERDTreeStatusline="%{exists('b:NERDTree')?fnamemodify(b:NERDTree.root.path.
 " Disable bookmark and 'press ? for help' text
 let NERDTreeMinimalUI=0
 
+" Set NERDTree window size
+let g:NERDTreeWinSize=30
+
 
 " ----- vim-rainbow
 
 " set to 0 if you want to enable it later via :RainbowToggle
-let g:rainbow_active = 1
+let g:rainbow_active = 0
+
+
+" ----- rainbow_parentheses
+" RainbowParentheses
+au bufenter * RainbowParentheses
 
 
 " ----- vim-autoformat
 " Remap the command of autoformat to <F3>
 noremap <F3> :Autoformat<CR>
+
+" Make do endo indent correct
+let fortran_do_enddo=1
 
 
 " ----- vim-airline settings
@@ -290,7 +316,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.spell = 'Ꞩ'
 
 " Only show git hunks which are non-zero
@@ -308,6 +334,16 @@ hi HighlightedyankRegion cterm=reverse gui=reverse
 " set highlight duration time to 1000 ms, i.e., 1 second
 let g:highlightedyank_highlight_duration = 1000
 
+
+" ----- vim-signify settings
+" The VCS to use
+let g:signify_vcs_list = [ 'git' ]
+
+" Change the sign for certain operations
+let g:signify_sign_change = '~'
+
+" default updatetime 4000ms is not good for async update
+set updatetime=100
 
 " ----- neoformat
 
@@ -346,6 +382,9 @@ set tabstop=2       " number of visual spaces per TAB
 set softtabstop=2   " number of spaces in tab when editing
 set shiftwidth=2    " number of spaces to use for autoindent
 set expandtab       " expand tab to spaces so that tabs are spaces
+" These will be reset to 4 in /usr/share/nvim/runtime/ftplugin/python.vim
+" if g:python_recommended_style does not exist or non-zero
+let g:python_recommended_style = 0
 
 " Set matching pairs of characters and highlight matching brackets
 " Use % to jump between them
@@ -374,7 +413,7 @@ set colorcolumn=80
 set scrolloff=3
 
 " Use mouse to put cursor, select and resize windows, etc.
-" set mouse=nic  " Enable mouse in several mode
+set mouse=nc  " Enable mouse in several mode
 set mousemodel=popup  " Set the behaviour of mouse
 
 " Do not show mode on command line since vim-airline can show it
@@ -536,7 +575,7 @@ nnoremap <silent> 0 g0
 " https://unix.stackexchange.com/q/162528/221410
 inoremap <expr> <cr> ((pumvisible())?("\<C-Y>"):("\<cr>"))
 " Use <esc> to close auto-completion menu
-inoremap <expr> <esc> ((pumvisible())?("\<C-e>"):("\<esc>"))
+" inoremap <expr> <esc> ((pumvisible())?("\<C-e>"):("\<esc>"))
 
 
 
@@ -557,6 +596,10 @@ set background=dark
 
 
 " ----- Colorscheme settings
+
+""""" Set the background to transparent after every colorscheme command
+au ColorScheme * hi Normal ctermbg=none guibg=none
+" au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
 
 """"" gruvbox settings
 " We should check if theme exists before using it, otherwise you will get
@@ -613,8 +656,9 @@ highlight Cursor2 guifg=red guibg=red
 
 " Set up cursor color and shape in various mode, ref:
 " https://github.com/neovim/neovim/wiki/FAQ#how-to-change-cursor-color-in-the-terminal
-set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20
-
+" set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20
+" set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:block-Cursor2/lCursor2,r-cr:hor20,o:hor20
+set guicursor=  " use guicursor from the colorscheme
 
 
 
