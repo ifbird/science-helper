@@ -4,7 +4,8 @@
 " virtualenv for Neovim, then install pynvim for it,
 " then hard-code the interpreter path. So that the "pynvim" package
 " is not required for each virtualenv.
-let g:python3_host_prog = '/home/pzzhou/opt/anaconda3/bin/python'
+" Use expand to make ~ correctly expanded.
+let g:python3_host_prog = expand('~/opt/anaconda3/bin/python')
 
 " Custom mapping <leader> (see `:h mapleader` for more info)
 " The default is '\'
@@ -24,8 +25,8 @@ let g:is_mac = has('macunix')
 " Install vim-plug for Neovim:
 " Put plug.vim in ~/.local/share/nvim/site/autoload
 " $ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-"	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
+"   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
 " Install plugins: :PlugInstall
 " Update plugins : :PlugUpdate
 " Remove plugins : :PlugClean (First, comment the plugin install command in
@@ -664,6 +665,12 @@ highlight Cursor2 guifg=red guibg=red
 " set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20
 " set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:block-Cursor2/lCursor2,r-cr:hor20,o:hor20
 set guicursor=  " use guicursor from the colorscheme
+
+" Disable inserting comment leader after hitting o or O
+set formatoptions-=o
+
+" Disable inserting comment leader after hitting <Enter> in insert mode
+set formatoptions-=r
 
 
 
