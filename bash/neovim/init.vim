@@ -198,9 +198,10 @@ call deoplete#custom#source('_', {
       \ })
 
 " Ignore certain sources, because they only cause nosie most of the time
-call deoplete#custom#option('ignore_sources', {
-      \ '_': ['around', 'buffer', 'tag']
-      \ })
+" This will cause the <tab> complete not working well
+" call deoplete#custom#option('ignore_sources', {
+"       \ '_': ['around', 'buffer', 'tag']
+"       \ })
 
 " Candidate list item number limit
 call deoplete#custom#option('max_list', 30)
@@ -219,7 +220,7 @@ call deoplete#custom#option('auto_complete', v:true)
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Tab-complete, see https://vi.stackexchange.com/q/19675/15292.
-inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
 " ----- deoplete-jedi settings
@@ -499,6 +500,10 @@ set virtualedit=block
 " Correctly break multi-byte characters such as CJK,
 " see https://stackoverflow.com/q/32669814/6064933
 set formatoptions+=mM
+
+" Disable automatic comment insertion
+" https://vi.stackexchange.com/questions/1983/how-can-i-get-vim-to-stop-putting-comments-in-front-of-new-lines
+au FileType * set fo-=c fo-=r fo-=o
 
 " Tilde (~) is an operator, thus must be followed by motions like `e` or `w`.
 set tildeop
