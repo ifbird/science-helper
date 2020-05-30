@@ -671,11 +671,6 @@ highlight Cursor2 guifg=red guibg=red
 " set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:block-Cursor2/lCursor2,r-cr:hor20,o:hor20
 set guicursor=  " use guicursor from the colorscheme
 
-" Disable inserting comment leader after hitting o or O
-set formatoptions-=o
-
-" Disable inserting comment leader after hitting <Enter> in insert mode
-set formatoptions-=r
 
 
 
