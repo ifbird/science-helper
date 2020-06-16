@@ -223,6 +223,9 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " Tab-complete, see https://vi.stackexchange.com/q/19675/15292.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" Set to 0 if you do not want to use PEP8 style (autoindent is 4 characters)
+let g:python_recommended_style = 0
+
 
 " ----- deoplete-jedi settings
 
