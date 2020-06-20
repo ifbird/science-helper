@@ -156,6 +156,35 @@ def plot_grid_lines():
   fg.savefig('cartopy_grid_lines.png')
 
 
+
+def plot_transform():
+  """
+  "
+  " Refer to:
+  "   https://matplotlib.org/3.2.1/tutorials/advanced/transforms_tutorial.html
+  "
+  " ax.transData: data coords, xlim, ylim
+  " ax.transAxes: axes coords, (0,0) -> (1,1)
+  " fg.transFigure: figure coords, (0,0) -> (1,1)
+  " fg.dpi_scale_trans: figure coords, inches (usually 1 point = 1/72 inch)
+  " None or IdentityTransform(): display window in pixel, all other transforms
+  "   will be finally converted to this transform
+  " ax.get_xaxis_transform(): blended coords, ax.transData in xaxis and
+  "   ax.transAxes in yaxis, equals to:
+  "   transforms.blended_transform_factory(ax.transData, ax.transAxes)
+  " ax.get_yaxis_transform(): similar with above, but vice versa
+  "
+  " Usage:
+  " 
+  " 1. ax.transData.transform( (x, y) ) will convert (x, y) from data coords to
+  " display window coords.
+  " 2. ax.transData.inverted().transform( (xd, yd) ) will convert (xd, yd) from
+  " display window coords to data coords.
+  " 
+  """
+  pass
+
+
 if __name__ == '__main__':
   plot_cartopy_basic_map(ccrs.Robinson())
   plot_cartopy_map_boundary()
