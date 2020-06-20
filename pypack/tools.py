@@ -7,7 +7,7 @@ import numpy.ma as ma
 
 from pyhdf.SD import *
 
-from constants import *
+from .constants import *
 
 
 def calc_land_ind_in_grg_grid(lon_lrg, lat_lrg, lon_grg, lat_grg):
