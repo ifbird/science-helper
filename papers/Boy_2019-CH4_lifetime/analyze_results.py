@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm
 import matplotlib.ticker as mticker
 import matplotlib.patches as mpatches
+import matplotlib.colors as colors
 
 # Cartopy for the global map drawing
 import cartopy.crs as ccrs
@@ -419,9 +420,379 @@ def plot_global_gas(gas, level, unit_convert=1.0):
     plt.close(fg)
 
 
+def plot_zonal_level(gas, unit_convert, cbar_label):
+  """
+  " Figure structure:
+  "
+  " raw      absdiff       reldiff
+  "
+  " BASE  |  E0C6-BASE  |  (E0C6-BASE)/BASE
+  " ---------------------------------------
+  " E0C6  |  E6C6-BASE  |  (E6C6-BASE)/BASE
+  " ---------------------------------------
+  " E6C6  |  E6C6-E0C6  |  (E6C6-E0C6)/E0C6
+  "
+  " Plot for each month
+  "
+  "   ^
+  " l |
+  " e |   zonal mean
+  " v |
+  " e |
+  " l |
+  "   |-------------->
+  "       latitude
+  """
+
+  # ----- Set parameters
+  data_crs = projection=ccrs.PlateCarree()
+  map_proj = projection=ccrs.PlateCarree()
+
+  for i in range(12):
+    im = i + 1
+    print(im)
+  
+    # ----- Calculate data
+    gas_month_base = ds['BASE'][gas][24 + i, :, :, :].mean(dim='lon') * unit_convert
+    gas_month_e0c6 = ds['E0C6'][gas][i, :, :, :].mean(dim='lon') * unit_convert
+    gas_month_e6c6 = ds['E6C6'][gas][i, :, :, :].mean(dim='lon') * unit_convert
+    gas_month_reldiff1 = (gas_month_e0c6 - gas_month_base)/gas_month_base  # [-]
+    gas_month_reldiff2 = (gas_month_e6c6 - gas_month_base)/gas_month_base  # [-]
+    gas_month_reldiff3 = (gas_month_e6c6 - gas_month_e0c6)/gas_month_e0c6  # [-]
+    gas_month_absdiff1 = gas_month_e0c6 - gas_month_base
+    gas_month_absdiff2 = gas_month_e6c6 - gas_month_base
+    gas_month_absdiff3 = gas_month_e6c6 - gas_month_e0c6
+
+    # ----- Read general data which are the same for all the cases
+    lat = ds['BASE']['lat']
+    lon = ds['BASE']['lon']
+    lev = ds['BASE']['lev']
+    lat_lev = np.tile(lat, (lev.size, 1))
+    
+    gph3D = ds_meteo['gph3D'][24 + i, :, :, :]
+    gph3D_zonal_lev = gph3D.mean(dim=('lon'))
+    pres = ds_meteo['pressure']
+    pres_zonal = pres.mean(dim=('lon', 'lat'))
+
+    # ---- Start ploting figures
+
+    # Create a figure
+    fg = plt.figure(figsize=(14, 8), constrained_layout=False, dpi=150)
+  
+    # Set axes structure
+    nrow = 3
+    ncol = 3
+  
+    ax_base = fg.add_subplot(nrow, ncol, 1)
+    ax_e0c6 = fg.add_subplot(nrow, ncol, 4)
+    ax_e6c6 = fg.add_subplot(nrow, ncol, 7)
+
+    ax_absdiff1 = fg.add_subplot(nrow, ncol, 2)
+    ax_absdiff2 = fg.add_subplot(nrow, ncol, 5)
+    ax_absdiff3 = fg.add_subplot(nrow, ncol, 8)
+
+    ax_reldiff1 = fg.add_subplot(nrow, ncol, 3)
+    ax_reldiff2 = fg.add_subplot(nrow, ncol, 6)
+    ax_reldiff3 = fg.add_subplot(nrow, ncol, 9)
+
+    # Original dataset
+    hpcm_base = ax_base.pcolormesh(lat_lev, gph3D_zonal_lev, gas_month_base)
+    ax_base.set_title('BASE')
+
+    hpcm_e0c6 = ax_e0c6.pcolormesh(lat_lev, gph3D_zonal_lev, gas_month_e0c6)
+    ax_e0c6.set_title('E0C6')
+
+    hpcm_e6c6 = ax_e6c6.pcolormesh(lat_lev, gph3D_zonal_lev, gas_month_e6c6)
+    ax_e6c6.set_title('E6C6')
+
+
+    # 3.1: DivergingNorm
+    # 3.2: TwoSlopeNorm
+    # divnorm = colors.DivergingNorm(vmin=-1, vcenter=0, vmax=1)
+    # divnorm = colors.DivergingNorm(vcenter=0)
+
+
+    # Absolute difference
+    vabsmax = max( abs(gas_month_absdiff1.min().values), \
+        abs(gas_month_absdiff1.max().values) )
+    divnorm = colors.DivergingNorm(vmin=-vabsmax, vcenter=0, vmax=vabsmax)
+    hpcm_absdiff1 = ax_absdiff1.pcolormesh( \
+        lat_lev, gph3D_zonal_lev, gas_month_absdiff1, \
+        norm=divnorm, cmap=plt.get_cmap('RdBu_r'))
+    ax_absdiff1.set_title('E0C6-BASE')
+
+    vabsmax = max( abs(gas_month_absdiff2.min().values), \
+        abs(gas_month_absdiff2.max().values) )
+    divnorm = colors.DivergingNorm(vmin=-vabsmax, vcenter=0, vmax=vabsmax)
+    hpcm_absdiff2 = ax_absdiff2.pcolormesh( \
+        lat_lev, gph3D_zonal_lev, gas_month_absdiff2, \
+        norm=divnorm, cmap=plt.get_cmap('RdBu_r'))
+    ax_absdiff2.set_title('E6C6-BASE')
+
+    vabsmax = max( abs(gas_month_absdiff3.min().values), \
+        abs(gas_month_absdiff3.max().values) )
+    divnorm = colors.DivergingNorm(vmin=-vabsmax, vcenter=0, vmax=vabsmax)
+    hpcm_absdiff3 = ax_absdiff3.pcolormesh( \
+        lat_lev, gph3D_zonal_lev, gas_month_absdiff3, \
+        norm=divnorm, cmap=plt.get_cmap('RdBu_r'))
+    ax_absdiff3.set_title('E6C6-E0C6')
+
+
+    # Relative difference
+    vabsmax = max( abs(gas_month_reldiff1.min().values), \
+        abs(gas_month_reldiff1.max().values) )
+    divnorm = colors.DivergingNorm(vmin=-vabsmax, vcenter=0, vmax=vabsmax)
+    hpcm_reldiff1 = ax_reldiff1.pcolormesh( \
+        lat_lev, gph3D_zonal_lev, gas_month_reldiff1, \
+        norm=divnorm, cmap=plt.get_cmap('RdBu_r'))
+    ax_reldiff1.set_title('(E0C6-BASE)/BASE')
+
+    vabsmax = max( abs(gas_month_reldiff2.min().values), \
+        abs(gas_month_reldiff2.max().values) )
+    divnorm = colors.DivergingNorm(vmin=-vabsmax, vcenter=0, vmax=vabsmax)
+    hpcm_reldiff2 = ax_reldiff2.pcolormesh( \
+        lat_lev, gph3D_zonal_lev, gas_month_reldiff2, \
+        norm=divnorm, cmap=plt.get_cmap('RdBu_r'))
+    ax_reldiff2.set_title('(E6C6-BASE)/BASE')
+
+    vabsmax = max( abs(gas_month_reldiff3.min().values), \
+        abs(gas_month_reldiff3.max().values) )
+    divnorm = colors.DivergingNorm(vmin=-vabsmax, vcenter=0, vmax=vabsmax)
+    hpcm_reldiff3 = ax_reldiff3.pcolormesh( \
+        lat_lev, gph3D_zonal_lev, gas_month_reldiff3, \
+        norm=divnorm, cmap=plt.get_cmap('RdBu_r'))
+    ax_reldiff3.set_title('(E6C6-E0C6)/E0C6')
+
+    for a in [ax_base, ax_e0c6, ax_e6c6]:
+      a.set_ylabel('gph3D (m)')
+  
+
+    # Set figure properties
+    fg.suptitle('{0}, Month: {1:02d}, Zonal mean vertically'.format(gas, im))
+
+    # Adjust the figure structure and the axes positions
+    fg.subplots_adjust(left=0.08, right=0.88, bottom=0.05, top=0.90, \
+      wspace=0.70, hspace=0.3)
+
+    # ----- Colorbars
+
+    cbar_width = 0.01
+
+    # Left colorbar axes
+    ll, bl, wl, hl = ax_e0c6.get_position().bounds
+    cax_left = fg.add_axes([ll+wl+0.01, bl-0.2*hl, cbar_width, 1.4*hl])
+    cbar_left = fg.colorbar(hpcm_base, cax=cax_left)
+    cax_left.set_ylabel(cbar_label)
+
+    # Middle colorbar axes
+    lm1, bm1, wm1, hm1 = ax_absdiff1.get_position().bounds
+    lm2, bm2, wm2, hm2 = ax_absdiff2.get_position().bounds
+    cax_middle1 = fg.add_axes([lm1+wm1+0.01, bm2+0.5*hm2, \
+      cbar_width, (bm1+0.5*hm1)-(bm2+0.5*hm2)])
+    cbar_middle1 = fg.colorbar(hpcm_absdiff1, cax=cax_middle1)
+    cax_middle1.set_ylabel(cbar_label)
+
+    lm3, bm3, wm3, hm3 = ax_absdiff3.get_position().bounds
+    cax_middle2 = fg.add_axes([lm3+wm3+0.01, bm3, cbar_width, hm3])
+    cbar_middle2 = fg.colorbar(hpcm_absdiff3, cax=cax_middle2)
+    cax_middle2.set_ylabel(cbar_label)
+
+    # Right colorbar axes
+    lr1, br1, wr1, hr1 = ax_reldiff1.get_position().bounds
+    lr2, br2, wr2, hr2 = ax_reldiff2.get_position().bounds
+    cax_right1 = fg.add_axes([lr1+wr1+0.01, br2+0.5*hr2, \
+      cbar_width, (br1+0.5*hr1)-(br2+0.5*hr2)])
+    cbar_right1 = fg.colorbar(hpcm_reldiff1, cax=cax_right1)
+    # cax_right1.set_ylabel('%')
+
+    # Right colorbar axes
+    lr3, br3, wr3, hr3 = ax_reldiff3.get_position().bounds
+    cax_right2 = fg.add_axes([lr3+wr3+0.01, br3, cbar_width, hr3])
+    cbar_right2 = fg.colorbar(hpcm_reldiff3, cax=cax_right2)
+    # cax_right2.set_ylabel('%')
+
+    # Save figure
+    fg.savefig('zonal_mean_lat_lev/zonal_mean-{0}-month_{1:02d}-diff.png'.format( \
+      gas, im))
+
+    # Close the figure for better memory use
+    plt.close(fg)
+
+
+def plot_zonal_mean_at_levels(gas, unit_convert, ylabel):
+  """
+  " Figure structure:
+  "
+  " raw      absdiff       reldiff
+  "
+  " BASE  |  E0C6-BASE  |  (E0C6-BASE)/BASE
+  " ---------------------------------------
+  " E0C6  |  E6C6-BASE  |  (E6C6-BASE)/BASE
+  " ---------------------------------------
+  " E6C6  |  E6C6-E0C6  |  (E6C6-E0C6)/E0C6
+  "
+  " Plot for each month
+  "
+  "   ^
+  "   |
+  " c |  time series at
+  " o |  different levels
+  " n |
+  " c |
+  "   |-------------->
+  "       latitude
+  """
+
+  # ----- Set parameters
+  data_crs = projection=ccrs.PlateCarree()
+  map_proj = projection=ccrs.PlateCarree()
+
+  for i in range(12):
+    im = i + 1
+    print(im)
+  
+    # ----- Calculate data
+    gas_month_base = ds['BASE'][gas][24 + i, :, :, :].mean(dim='lon') * unit_convert
+    gas_month_e0c6 = ds['E0C6'][gas][i, :, :, :].mean(dim='lon') * unit_convert
+    gas_month_e6c6 = ds['E6C6'][gas][i, :, :, :].mean(dim='lon') * unit_convert
+    gas_month_reldiff1 = (gas_month_e0c6 - gas_month_base)/gas_month_base  # [-]
+    gas_month_reldiff2 = (gas_month_e6c6 - gas_month_base)/gas_month_base  # [-]
+    gas_month_reldiff3 = (gas_month_e6c6 - gas_month_e0c6)/gas_month_e0c6  # [-]
+    gas_month_absdiff1 = gas_month_e0c6 - gas_month_base
+    gas_month_absdiff2 = gas_month_e6c6 - gas_month_base
+    gas_month_absdiff3 = gas_month_e6c6 - gas_month_e0c6
+
+    # ----- Read general data which are the same for all the cases
+    lat = ds['BASE']['lat']
+    lon = ds['BASE']['lon']
+    lev = ds['BASE']['lev']
+    lat_lev = np.tile(lat, (lev.size, 1))
+    
+    gph3D = ds_meteo['gph3D'][24 + i, :, :, :]
+    gph3D_zonal_lev = gph3D.mean(dim=('lon'))
+    pres = ds_meteo['pressure']
+    pres_zonal = pres.mean(dim=('lon', 'lat'))
+
+    # ---- Start ploting figures
+
+    # Create a figure
+    fg = plt.figure(figsize=(14, 8), constrained_layout=False, dpi=150)
+  
+    # Set axes structure
+    nrow = 3
+    ncol = 3
+  
+    ax_base = fg.add_subplot(nrow, ncol, 1)
+    ax_e0c6 = fg.add_subplot(nrow, ncol, 4)
+    ax_e6c6 = fg.add_subplot(nrow, ncol, 7)
+
+    ax_absdiff1 = fg.add_subplot(nrow, ncol, 2)
+    ax_absdiff2 = fg.add_subplot(nrow, ncol, 5)
+    ax_absdiff3 = fg.add_subplot(nrow, ncol, 8)
+
+    ax_reldiff1 = fg.add_subplot(nrow, ncol, 3)
+    ax_reldiff2 = fg.add_subplot(nrow, ncol, 6)
+    ax_reldiff3 = fg.add_subplot(nrow, ncol, 9)
+
+    plot_ilevs = [0, 5, 10, 20, 30]
+
+    # Original dataset
+    for il in plot_ilevs:
+      ax_base.plot(lat, gas_month_base[il, :], \
+          label='{0:4.1f} km'.format(gph3D_zonal_lev[il, :].mean().values/1.0e3))
+      ax_e0c6.plot(lat, gas_month_e0c6[il, :])
+      ax_e6c6.plot(lat, gas_month_e6c6[il, :])
+
+    ax_base.set_title('BASE')
+    ax_e0c6.set_title('E0C6')
+    ax_e6c6.set_title('E6C6')
+
+    for a in [ax_base, ax_e0c6, ax_e6c6]:
+      a.set_ylabel(ylabel)
+
+    ax_base.grid(True)
+    ax_e0c6.grid(True)
+    ax_e6c6.grid(True)
+
+    ax_base.legend()  # only show legend once
+
+    # Absolute difference
+    for il in plot_ilevs:
+      ax_absdiff1.plot(lat, gas_month_absdiff1[il, :])
+      ax_absdiff2.plot(lat, gas_month_absdiff2[il, :])
+      ax_absdiff3.plot(lat, gas_month_absdiff3[il, :])
+
+    ax_absdiff1.set_title('E0C6-BASE')
+    ax_absdiff2.set_title('E6C6-BASE')
+    ax_absdiff3.set_title('E6C6-E0C6')
+
+    ax_absdiff1.grid(True)
+    ax_absdiff2.grid(True)
+    ax_absdiff3.grid(True)
+
+
+    # Relative difference
+    for il in plot_ilevs:
+      ax_reldiff1.plot(lat, gas_month_reldiff1[il, :])
+      ax_reldiff2.plot(lat, gas_month_reldiff2[il, :])
+      ax_reldiff3.plot(lat, gas_month_reldiff3[il, :])
+
+    ax_reldiff1.set_title('(E0C6-BASE)/BASE')
+    ax_reldiff2.set_title('(E6C6-BASE)/BASE')
+    ax_reldiff3.set_title('(E6C6-E0C6)/E0C6')
+
+    ax_reldiff1.grid(True)
+    ax_reldiff2.grid(True)
+    ax_reldiff3.grid(True)
+  
+    # Set figure properties
+    fg.suptitle('{0}, Month: {1:02d}, Zonal mean at different levels'.format(gas, im))
+
+    # Adjust the figure structure and the axes positions
+    fg.subplots_adjust(left=0.08, right=0.92, bottom=0.05, top=0.90, \
+      wspace=0.55, hspace=0.3)
+
+    # Save figure
+    fg.savefig('zonal_mean_lat_lev/zonal_mean_at_levels-{0}-month_{1:02d}-diff.png'.format( \
+      gas, im))
+
+    # Close the figure for better memory use
+    plt.close(fg)
+
+
 # Call the plot functions
 # plot_time_series()
-plot_global_gas('GAS_OH', 0, \
-  unit_convert=1.0/xmm_oh * Avog * 1.0e-6 * 1.0e-6)  # 10^6 molec cm-3
+# plot_global_gas('GAS_OH', 0, \
+#   unit_convert=1.0/xmm_oh * Avog * 1.0e-6 * 1.0e-6)  # 10^6 molec cm-3
 # plot_global_gas('GAS_TERP', 0, unit_convert=1.0)
 # plot_global_gas('GAS_CH4', 0, unit_convert=1.0)
+
+# 10^6 molec cm-3
+plot_zonal_level('GAS_OH', \
+  unit_convert=1.0/xmm_oh * Avog * 1.0e-6 * 1.0e-6, \
+  cbar_label=r'[OH] (10$^6$ molec cm$^{-3}$)')
+
+# 10^12 molec cm-3
+plot_zonal_level('GAS_CH4', \
+  unit_convert=1.0/xmm_ch4 * Avog * 1.0e-6 * 1.0e-12, \
+  cbar_label=r'[CH4] (10$^{12}$ molec cm$^{-3}$)')
+
+# 10^10 molec cm-3
+plot_zonal_level('GAS_TERP', \
+  unit_convert=1.0/xmm_mt * Avog * 1.0e-6 * 1.0e-10, \
+  cbar_label=r'[TERP] (10$^{10}$ molec cm$^{-3}$)')
+
+# 10^6 molec cm-3
+# plot_zonal_mean_at_levels('GAS_OH', \
+#   unit_convert=1.0/xmm_oh * Avog * 1.0e-6 * 1.0e-6, \
+#   ylabel=r'[OH] (10$^6$ molec cm$^{-3}$)')
+
+# 10^12 molec cm-3
+# plot_zonal_mean_at_levels('GAS_CH4', \
+#   unit_convert=1.0/xmm_ch4 * Avog * 1.0e-6 * 1.0e-12, \
+#   ylabel=r'[CH4] (10$^{12}$ molec cm$^{-3}$)')
+
+# 10^10 molec cm-3
+# plot_zonal_mean_at_levels('GAS_TERP', \
+#   unit_convert=1.0/xmm_mt * Avog * 1.0e-6 * 1.0e-10, \
+#   ylabel=r'[TERP] (10$^{10}$ molec cm$^{-3}$)')
