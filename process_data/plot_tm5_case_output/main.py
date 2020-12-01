@@ -1043,7 +1043,7 @@ def plot_od550aer_pi_mh2(month_range):
   plot_base_3x1( 'figures/od550aer_am-pio_mh2.png', lon, lat, [data[pi_case], data['mh2'], data_diff], \
     levels = [ np.arange(0.1, 0.8, 0.1), np.arange(0.1, 0.8, 0.1), np.arange(-0.5, 0.6, 0.1) ], \
     cmap = [plt.get_cmap('viridis'), plt.get_cmap('viridis'), plt.get_cmap('RdBu_r')], \
-    cb_label=r'Dust AOD at 550 nm', \
+    cb_label=r'Aerosol AOD at 550 nm', \
     )
 
   reg_na = [-90.0, 130.0, -30.0, 75.0]
