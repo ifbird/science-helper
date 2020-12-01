@@ -316,7 +316,7 @@ def plot_time_series():
 # else:
 #     plevelstr = plevel
 
-def plot_global_gas(gas, level, unit_convert=1.0):
+def plot_global_gas(gas, level, unit_label, unit_convert=1.0):
   # ----- Set parameters
   data_crs = projection=ccrs.PlateCarree()
   map_proj = projection=ccrs.PlateCarree()
@@ -387,8 +387,8 @@ def plot_global_gas(gas, level, unit_convert=1.0):
     # fg.tight_layout()
 
     # Adjust the figure structure and the axes positions
-    fg.subplots_adjust(left=0.05, right=0.90, bottom=0.05, top=0.95, \
-      wspace=0.2, hspace=0.05)
+    fg.subplots_adjust(left=0.02, right=0.88, bottom=0.05, top=0.95, \
+      wspace=0.21, hspace=0.05)
 
     # Left colorbar axes
     l, b, w, h = ax_e0c6.get_position().bounds
@@ -409,7 +409,7 @@ def plot_global_gas(gas, level, unit_convert=1.0):
     cbar_right1 = fg.colorbar(hpcm_diff1, cax=cax_right1)
     cbar_right2 = fg.colorbar(hpcm_diff3, cax=cax_right2)
 
-    cax_left.set_ylabel(r'[OH] (10$^6$ molec cm$^{-3}$)')
+    cax_left.set_ylabel(unit_label)
     cax_right1.set_ylabel('%')
     cax_right2.set_ylabel('%')
 
@@ -655,9 +655,9 @@ def plot_zonal_mean_at_levels(gas, unit_convert, ylabel):
     gas_month_base = ds['BASE'][gas][24 + i, :, :, :].mean(dim='lon') * unit_convert
     gas_month_e0c6 = ds['E0C6'][gas][i, :, :, :].mean(dim='lon') * unit_convert
     gas_month_e6c6 = ds['E6C6'][gas][i, :, :, :].mean(dim='lon') * unit_convert
-    gas_month_reldiff1 = (gas_month_e0c6 - gas_month_base)/gas_month_base  # [-]
-    gas_month_reldiff2 = (gas_month_e6c6 - gas_month_base)/gas_month_base  # [-]
-    gas_month_reldiff3 = (gas_month_e6c6 - gas_month_e0c6)/gas_month_e0c6  # [-]
+    gas_month_reldiff1 = (gas_month_e0c6 - gas_month_base)/gas_month_base  # [%]
+    gas_month_reldiff2 = (gas_month_e6c6 - gas_month_base)/gas_month_base  # [%]
+    gas_month_reldiff3 = (gas_month_e6c6 - gas_month_e0c6)/gas_month_e0c6  # [%]
     gas_month_absdiff1 = gas_month_e0c6 - gas_month_base
     gas_month_absdiff2 = gas_month_e6c6 - gas_month_base
     gas_month_absdiff3 = gas_month_e6c6 - gas_month_e0c6
@@ -762,25 +762,27 @@ def plot_zonal_mean_at_levels(gas, unit_convert, ylabel):
 
 # Call the plot functions
 # plot_time_series()
-# plot_global_gas('GAS_OH', 0, \
-#   unit_convert=1.0/xmm_oh * Avog * 1.0e-6 * 1.0e-6)  # 10^6 molec cm-3
-# plot_global_gas('GAS_TERP', 0, unit_convert=1.0)
-# plot_global_gas('GAS_CH4', 0, unit_convert=1.0)
+plot_global_gas('GAS_OH', 0, unit_label=r'[OH] (10$^6$ molec cm$^{-3}$)', \
+  unit_convert=1.0/xmm_oh * Avog * 1.0e-6 * 1.0e-6)  # 10^6 molec cm-3
+plot_global_gas('GAS_TERP', 0, unit_label=r'[TERP] (10$^{10}$ molec cm$^{-3}$)', \
+  unit_convert=1.0/xmm_mt * Avog * 1.0e-6 * 1.0e-10)  # 10^10 molec cm-3
+plot_global_gas('GAS_CH4', 0, unit_label=r'[CH4] (10$^{12}$ molec cm$^{-3}$)', \
+  unit_convert=1.0/xmm_ch4 * Avog * 1.0e-6 * 1.0e-12)  # 10^12 molec cm-3
 
 # 10^6 molec cm-3
-plot_zonal_level('GAS_OH', \
-  unit_convert=1.0/xmm_oh * Avog * 1.0e-6 * 1.0e-6, \
-  cbar_label=r'[OH] (10$^6$ molec cm$^{-3}$)')
+# plot_zonal_level('GAS_OH', \
+#   unit_convert=1.0/xmm_oh * Avog * 1.0e-6 * 1.0e-6, \
+#   cbar_label=r'[OH] (10$^6$ molec cm$^{-3}$)')
 
 # 10^12 molec cm-3
-plot_zonal_level('GAS_CH4', \
-  unit_convert=1.0/xmm_ch4 * Avog * 1.0e-6 * 1.0e-12, \
-  cbar_label=r'[CH4] (10$^{12}$ molec cm$^{-3}$)')
+# plot_zonal_level('GAS_CH4', \
+#   unit_convert=1.0/xmm_ch4 * Avog * 1.0e-6 * 1.0e-12, \
+#   cbar_label=r'[CH4] (10$^{12}$ molec cm$^{-3}$)')
 
 # 10^10 molec cm-3
-plot_zonal_level('GAS_TERP', \
-  unit_convert=1.0/xmm_mt * Avog * 1.0e-6 * 1.0e-10, \
-  cbar_label=r'[TERP] (10$^{10}$ molec cm$^{-3}$)')
+# plot_zonal_level('GAS_TERP', \
+#   unit_convert=1.0/xmm_mt * Avog * 1.0e-6 * 1.0e-10, \
+#   cbar_label=r'[TERP] (10$^{10}$ molec cm$^{-3}$)')
 
 # 10^6 molec cm-3
 # plot_zonal_mean_at_levels('GAS_OH', \
